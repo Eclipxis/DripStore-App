@@ -2,7 +2,7 @@ import { Poppins, Source_Sans_3 } from 'next/font/google';
 import { createGlobalStyle } from 'styled-components';
 
 export const poppins = Poppins({ weight: '400', subsets: ['latin'] });
-export const sourceSans = Source_Sans_3({ weight: '400', subsets: ['latin'] });
+export const sourceSans = Source_Sans_3({ weight: ['400', '500', '600', '700'], subsets: ['latin'] });
 
 export const GlobalStyles = createGlobalStyle`
 * {
