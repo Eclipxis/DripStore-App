@@ -1,12 +1,12 @@
-import Button from "@/ui/atoms/button";
+import Header from "@/ui/molecules/header";
+import Hero from "@/ui/templates/hero";
 
 const Home = () => {
   return (
-     <Button 
-      label="Entre em Contato"
-      onClick={() => {}}
-      variant="ghost"
-    />
+    <>
+      <Header />
+      <Hero />
+    </>
   )
 }
 

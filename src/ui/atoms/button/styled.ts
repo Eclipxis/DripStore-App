@@ -47,7 +47,6 @@ export const Container = styled.button<{
 
       default:
         return css`
-          border: 0.1rem solid #ff7adc;
           border-radius: 1rem;
           background: linear-gradient(90deg, #b388ff, #ff80ab);
           font-weight: 500;
