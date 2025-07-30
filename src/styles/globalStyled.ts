@@ -13,6 +13,17 @@ export const GlobalStyles = createGlobalStyle`
   border: none;
   font-family: ${sourceSans.style.fontFamily}, sans-serif;
   font-weight: 400;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+#__next {
+  height: 100%;
+  width: 100%;
+}
+
+html, body {
+  touch-action: pan-y;
 }
 
 html {

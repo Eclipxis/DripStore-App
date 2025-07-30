@@ -14,7 +14,7 @@ export const Container = styled.div`
   width: 100%;
   height: 6.4rem;
 
-  background-color: rgba(22, 16, 22, 0.8);
+  background-color: rgba(13, 13, 13, 0.8);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 `;
