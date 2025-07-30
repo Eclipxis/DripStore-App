@@ -14,35 +14,37 @@ const ShowCollection = () => {
           </S.Subtitle>
         </S.WrapperTexts>
 
-        <CardShowCollection
-          name='Hoodie Oversized'
-          description='Moletom oversized premium com estampa exclusiva'
-          price={189.90}
-          pictures={[]}
-          isHide={false}
-        />
+        <S.WrapperProducts>
+          <CardShowCollection
+            name='Hoodie Oversized'
+            description='Moletom oversized premium com estampa exclusiva'
+            price={189.90}
+            pictures={[]}
+            isHide={false}
+          />
 
-        <CardShowCollection
-          name='Calça Baggy'
-          description='Calça jeans baggy com lavagem especial e cortes únicos'
-          pictures={[]}
-          isHide={false}
-        />
+          <CardShowCollection
+            name='Calça Baggy'
+            description='Calça jeans baggy com lavagem especial e cortes únicos'
+            pictures={[]}
+            isHide={false}
+          />
 
-        <CardShowCollection
-          name='Boné Snapback'
-          description='Boné snapback bordado com logo exclusivo da marca'
-          price={79.90}
-          pictures={[]}
-          isHide={false}
-        />
+          <CardShowCollection
+            name='Boné Snapback'
+            description='Boné snapback bordado com logo exclusivo da marca'
+            price={79.90}
+            pictures={[]}
+            isHide={false}
+          />
 
-        <CardShowCollection
-          name='Camiseta Graphic'
-          price={89.90}
-          pictures={[]}
-          isHide={false}
-        />
+          <CardShowCollection
+            name='Camiseta Graphic'
+            price={89.90}
+            pictures={[]}
+            isHide={false}
+          />
+        </S.WrapperProducts>
 
         <Button 
           label='Ver mais peças'

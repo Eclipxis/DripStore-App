@@ -41,3 +41,10 @@ export const Subtitle = styled.p`
   text-align: center;
   padding-bottom: 3.2rem;
 `;
+
+export const WrapperProducts = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.4rem;
+`;
