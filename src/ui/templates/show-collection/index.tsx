@@ -9,7 +9,7 @@ const ShowCollection = () => {
         <S.WrapperTexts>
           <S.Title>NOSSA COLEÇÃO</S.Title>
           <S.Subtitle>
-            Peças exclusivas que definem o street wear autêntico. 
+            Peças que definem o street wear autêntico. 
             Cada item é cuidadosamente selecionado para expressar sua personalidade única.
           </S.Subtitle>
         </S.WrapperTexts>

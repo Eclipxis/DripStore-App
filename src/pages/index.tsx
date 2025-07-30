@@ -1,3 +1,4 @@
+import Footer from "@/ui/molecules/footer";
 import Header from "@/ui/molecules/header";
 import About from "@/ui/templates/about";
 import Contact from "@/ui/templates/contact";
@@ -12,6 +13,7 @@ const Home = () => {
       <ShowCollection />
       <About />
       <Contact />
+      <Footer />
     </>
   )
 }
