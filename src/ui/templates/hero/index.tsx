@@ -3,11 +3,12 @@ import * as S from './styled';
 
 const Hero = () => {
   return (
-    <S.Container>
+    <S.Container id="hero">
       <S.Wrapper>
         <S.Title>DRIP</S.Title>
         <S.Subtitle>
-          Eleve seu estilo com as melhores peças de street wear. Autenticidade, qualidade e atitude em cada look.
+          Eleve seu estilo com as melhores peças de street wear.<br /> 
+          Autenticidade, qualidade e atitude em cada look.
         </S.Subtitle>
 
         <S.WrapperButtons>

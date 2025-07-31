@@ -39,4 +39,28 @@ body {
   
   scroll-behavior: auto;
 }
+
+@media (min-width: 1500px) {
+  html {
+    font-size: 58.5%;
+  }
+}
+
+@media (min-width: 2560px) {
+  html {
+    font-size: 77%;
+  }
+}
+
+@media (min-width: 3000px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (min-width: 3820px) {
+  html {
+    font-size: 130%;
+  }
+}
 `;

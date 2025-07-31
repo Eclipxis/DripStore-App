@@ -5,13 +5,13 @@ const Footer = () => {
     <S.Container>
       <S.LogoTitle>DRIP</S.LogoTitle>
       <S.LogoSubtitle>
-        Elevando o street wear da<br/>
-        zona leste com estilo.
+        Elevando o street wear da <br/>
+        zona leste de São Paulo com estilo.
       </S.LogoSubtitle>
 
       <S.WrapperCopyright>
         <S.LogoSubtitle>
-          © 2025 DRIP<br/>
+          © 2025 DRIP <br/>
           Store
         </S.LogoSubtitle>
 
@@ -20,7 +20,7 @@ const Footer = () => {
         </S.LogoSubtitle>
 
         <S.LogoSubtitle>
-          Todos os direitos<br/>
+          Todos os direitos <br/>
           reservados
         </S.LogoSubtitle>
       </S.WrapperCopyright>

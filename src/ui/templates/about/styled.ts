@@ -27,6 +27,10 @@ export const Title = styled.h2`
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+
+  @media (min-width: 768px) {
+    font-size: 6rem;
+  }
 `;
 
 export const Card = styled.div`
@@ -38,6 +42,7 @@ export const Card = styled.div`
   background-color: #262629;
   padding: 3.2rem;
   margin-top: 3.2rem;
+  width: 100%;
 `;
 
 export const StrongDescription = styled.strong`
@@ -48,12 +53,20 @@ export const StrongDescription = styled.strong`
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 export const Description = styled.p`
   color: #A1A1AA;
   font-size: 1.8rem;
   text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 export const Maps = styled.iframe`

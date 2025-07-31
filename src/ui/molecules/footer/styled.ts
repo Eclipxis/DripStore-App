@@ -18,6 +18,10 @@ export const LogoTitle = styled.p`
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 
 export const LogoSubtitle = styled.p`
@@ -25,6 +29,12 @@ export const LogoSubtitle = styled.p`
   font-size: 1.6rem;
   padding: 1.6rem;
   text-align: center;
+
+  @media (min-width: 640px) {
+    & > br {
+      display: none;
+    }
+  }
 `;
 
 export const WrapperCopyright = styled.div`

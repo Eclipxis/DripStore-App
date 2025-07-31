@@ -12,8 +12,8 @@ export const Container = styled.div`
 export const WrapperItems = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4rem;
-  padding: 0rem 3.2rem;
 `;
 
 export const WrapperTexts = styled.div`
@@ -21,18 +21,24 @@ export const WrapperTexts = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 2.4rem;
+  padding: 0rem 3.2rem;
 `;
 
 export const Title = styled.h2`
   font-size: 3.6rem;
   font-weight: 900;
   font-family: 'Poppins';
+  text-align: center;
 
   background: linear-gradient(90deg, #ff9aef, #cd94f8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+
+  @media (min-width: 768px) {
+    font-size: 6rem;
+  }
 `;
 
 export const Subtitle = styled.p`
@@ -44,7 +50,9 @@ export const Subtitle = styled.p`
 
 export const WrapperProducts = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3.8rem;
+  width: 100%;
+  padding: 0rem 1.6rem;
 `;

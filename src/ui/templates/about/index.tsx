@@ -2,7 +2,7 @@ import * as S from './styled';
 
 const About = () => {
   return (
-    <S.Container>
+    <S.Container id="about">
       <S.Wrapper>
         <S.Title>
           SOBRE A DRIP

@@ -4,7 +4,7 @@ import Button from '@/ui/atoms/button';
 
 const ShowCollection = () => {
   return (
-    <S.Container>
+    <S.Container id="products">
       <S.WrapperItems>
         <S.WrapperTexts>
           <S.Title>NOSSA COLEÇÃO</S.Title>
@@ -50,7 +50,12 @@ const ShowCollection = () => {
           label='Ver mais peças'
           variant='secondary'
           onClick={() => {}}
-          styles={{ fontSize: '2rem', fontWeight: 700 }}
+          styles={{ 
+            fontSize: '2rem', 
+            fontWeight: 700,
+            width: '100%',
+            maxWidth: '34rem'
+          }}
         />
       </S.WrapperItems>
     </S.Container>

@@ -19,6 +19,16 @@ export const Container = styled.div`
   backdrop-filter: blur(10px);
 `;
 
+export const WrapperItems = styled.div`
+  display: none;
+  align-items: center;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+`;
+
 export const Heading = styled.p`
   font-size: 2.8rem;
   font-weight: 600;

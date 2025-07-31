@@ -3,7 +3,7 @@ import * as S from './styled';
 
 const Contact = () => {
   return (
-    <S.Container>
+    <S.Container id="contact">
       <S.Wrapper>
         <S.WrapperTexts>
           <S.Title>
@@ -11,7 +11,7 @@ const Contact = () => {
           </S.Title>
 
           <S.Subtitle>
-            Pronto para elevar seu style? Entre<br/> 
+            Pronto para elevar seu style? Entre <br/> 
             em contato conosco e descubra as peças perfeitas para o seu guarda-roupa.
           </S.Subtitle>
         </S.WrapperTexts>

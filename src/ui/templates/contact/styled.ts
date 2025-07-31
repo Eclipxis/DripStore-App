@@ -37,6 +37,10 @@ export const Title = styled.h2`
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+
+  @media (min-width: 768px) {
+    font-size: 6rem;
+  }
 `;
 
 export const Subtitle = styled.p`
@@ -44,6 +48,12 @@ export const Subtitle = styled.p`
   color: #b1b1b1ff;
   text-align: center;
   padding-bottom: 3.2rem;
+
+  @media (min-width: 768px) {
+    & > br {
+      display: none;
+    }
+  }
 `;
 
 export const WrapperCards = styled.div`
@@ -53,6 +63,10 @@ export const WrapperCards = styled.div`
   gap: 2.8rem;
   width: 100%;
   margin-bottom: 4.8rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const Card = styled.div`
@@ -68,6 +82,12 @@ export const Card = styled.div`
   & > button {
     width: 100%;
   }
+
+  @media (min-width: 768px) {
+    & > button {
+      padding: 1rem;
+    }
+  }
 `;
 
 export const Icon = styled.div<{ icon: string }>`
@@ -78,12 +98,23 @@ export const Icon = styled.div<{ icon: string }>`
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 1.6rem;
+
+  @media (min-width: 768px) {
+    width: 4rem;
+    height: 4rem;
+  }
 `;
 
 export const CardTitle = styled.p`
   color: #fafafa;
   font-size: 2rem;
   font-weight: 700;
+  
+  @media (min-width: 768px) {
+    & > br {
+      display: none;
+    }
+  }
 `;
 
 export const CardSubtitle = styled.p`
@@ -91,4 +122,9 @@ export const CardSubtitle = styled.p`
   font-size: 1.4rem;
   padding-top: 0.5rem;
   padding-bottom: 1.6rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 1.6rem;
+  }
 `;

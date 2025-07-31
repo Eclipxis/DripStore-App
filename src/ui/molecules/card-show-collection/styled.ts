@@ -4,13 +4,16 @@ import styled from "styled-components";
 export const Container = styled(motion.div)`
   display: flex;
   flex-direction: column;
-
-  width: 33.4rem;
-  height: 100%;
+  flex: 1 1 28rem;
+  min-width: 30rem;
 
   background-color: #212124;
   border-radius: 1.2rem;
   border: 1px solid #27272A;
+
+  @media (min-width: 700px) {
+    max-width: 31.8rem;
+  }
 `;
 
 export const WrapperImage = styled.div`
@@ -18,12 +21,25 @@ export const WrapperImage = styled.div`
   height: 33.2rem;
   background-color: #fff;
   border-radius: 1.2rem 1.2rem 0rem 0rem;
+
+  @media (min-width: 600px) {
+    min-height: 51rem;
+  }
+
+  @media (min-width: 700px) {
+    min-height: 31.8rem;
+  }
 `;
 
 export const WrapperDetails = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2.4rem;
+
+  @media (min-width: 700px) {
+    min-height: 23.2rem;
+    justify-content: space-between;
+  }
 `;
 
 export const NameDetails = styled.p`
