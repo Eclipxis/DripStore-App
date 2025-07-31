@@ -43,6 +43,7 @@ export const Card = styled.div`
   padding: 3.2rem;
   margin-top: 3.2rem;
   width: 100%;
+  max-width: 89.6rem;
 `;
 
 export const StrongDescription = styled.strong`

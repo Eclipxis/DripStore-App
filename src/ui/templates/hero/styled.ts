@@ -30,7 +30,7 @@ export const Wrapper = styled.div`
   background: linear-gradient(45deg, hsl(240 3.7% 15.9%), hsl(270 95% 75% / .1));
 `;
 
-export const Title = styled.h1`
+export const Title = styled(motion.h1)`
   font-size: 6rem;
   font-weight: 900;
   color: #e07fec;
@@ -42,7 +42,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const Subtitle = styled.p`
+export const Subtitle = styled(motion.p)`
   font-size: 2rem;
   color: #b1b1b1ff;
   text-align: center;

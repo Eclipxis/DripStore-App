@@ -20,7 +20,7 @@ const ShowCollection = () => {
             description='Moletom oversized premium com estampa exclusiva'
             price={189.90}
             pictures={[]}
-            isHide={false}
+            isHide
           />
 
           <CardShowCollection

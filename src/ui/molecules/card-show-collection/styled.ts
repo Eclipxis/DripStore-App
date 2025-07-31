@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import styled from "styled-components";
 
 export const Container = styled(motion.div)`
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1 1 28rem;
@@ -70,4 +71,26 @@ export const MoreDetails = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-top: 1.6rem;
+`;
+
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.2rem;
+`;
+
+export const SoldOutLabel = styled.div`
+  color: #f2f2f2;
+  font-size: 4rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  font-family: 'Poppins';
 `;

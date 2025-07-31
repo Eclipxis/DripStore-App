@@ -19,6 +19,13 @@ const CardShowCollection = ({
 }: Props) => {
   return (
     <S.Container>
+      {isHide && (
+        <S.Overlay>
+          <S.SoldOutLabel>
+            Esgotado
+          </S.SoldOutLabel>
+        </S.Overlay>
+      )}
       <S.WrapperImage />
       <S.WrapperDetails>
         <S.NameDetails>{name}</S.NameDetails>

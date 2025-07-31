@@ -21,32 +21,51 @@ const Header = () => {
           variant='ghost'
           onClick={() => { scrollToSection('hero') }}
           styles={{ fontSize: '1.6rem' }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.2
+          }}
         />
         <Button 
           label='Produtos'
           variant='ghost'
           onClick={() => { scrollToSection('products') }}
           styles={{ fontSize: '1.6rem' }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.5
+          }}
         />
         <Button 
           label='Sobre'
           variant='ghost'
           onClick={() => { scrollToSection('about') }}
           styles={{ fontSize: '1.6rem' }}
-        />
-        <Button 
-          label='Contato'
-          variant='ghost'
-          onClick={() => { scrollToSection('contact') }}
-          styles={{ fontSize: '1.6rem' }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.8
+          }}
         />
       </S.WrapperItems>
 
       <Button 
         label='Entre em Contato'
         variant='primary'
-        onClick={() => {}}
+        onClick={() => { scrollToSection('contact') }}
         styles={{ fontWeight: 600 }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.5,
+          delay: 0.2,
+          ease: [0, 0.71, 0.2, 1.01]
+        }}
       />
     </S.Container>
   )

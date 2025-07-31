@@ -73,6 +73,7 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   border-radius: 1.2rem;
   background-color: #262629;
   border: 1px solid #27282A80;

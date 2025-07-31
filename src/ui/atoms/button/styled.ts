@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 import { TButtonVariant } from ".";
+import { motion } from "motion/react";
 
-export const Container = styled.button<{
+export const Container = styled(motion.button)<{
   variant: TButtonVariant
 }>`
   padding: 1rem 2.4rem;

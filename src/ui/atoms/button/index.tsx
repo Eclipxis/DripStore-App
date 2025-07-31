@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { TargetAndTransition, Transition, VariantLabels } from 'motion';
 import { CSSProperties } from 'react';
 import * as S from './styled';
 
@@ -8,13 +10,19 @@ interface Props {
   variant: TButtonVariant;
   onClick: () => void;
   styles?: CSSProperties
+  initial?: boolean | TargetAndTransition | VariantLabels
+  animate?: boolean | TargetAndTransition | VariantLabels
+  transition?: Transition<any> | undefined
 }
 
 const Button = ({ 
   label, 
   variant, 
   onClick,
-  styles
+  styles,
+  initial,
+  animate,
+  transition
 }: Props) => {
   return (
     <S.Container
@@ -22,6 +30,9 @@ const Button = ({
       variant={variant}
       onClick={onClick}
       style={styles}
+      initial={initial}
+      animate={animate}
+      transition={transition}
     >
       {label}
     </S.Container>
