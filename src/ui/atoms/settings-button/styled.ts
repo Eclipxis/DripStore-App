@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Button = styled(motion.button)`
   position: fixed;
   bottom: 1.3em;
-  right: 0.5rem;
+  right: 1rem;
   width: 6rem;
   height: 6rem;
   border-radius: 50%;
@@ -15,4 +15,5 @@ export const Button = styled(motion.button)`
   background-position: center;
   background-repeat: no-repeat;
   background-size: 4rem;
+  cursor: pointer;
 `;

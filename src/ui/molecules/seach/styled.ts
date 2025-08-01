@@ -50,4 +50,5 @@ export const SearchButton = styled(motion.button)<{ icon: string }>`
   background-position: center;
   background-repeat: no-repeat;
   background-size: 4rem;
+  cursor: pointer;
 `;

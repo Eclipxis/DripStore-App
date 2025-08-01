@@ -23,10 +23,6 @@ export const WrapperImage = styled.div`
   background-color: #fff;
   border-radius: 1.2rem 1.2rem 0rem 0rem;
 
-  @media (min-width: 600px) {
-    min-height: 51rem;
-  }
-
   @media (min-width: 700px) {
     min-height: 31.8rem;
   }

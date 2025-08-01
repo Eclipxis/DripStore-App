@@ -1,6 +1,7 @@
 import { RefObject, useRef, useState } from 'react';
 import * as S from './styled'
 import { useClickOutside } from '@/ui/hooks/use-click-outside';
+import useIsMobile from '@/ui/hooks/use-is-mobile';
 
 interface Props {
   wrapperRef: RefObject<HTMLDivElement | null>
@@ -12,6 +13,8 @@ const Search = ({ wrapperRef }: Props) => {
 
   const searchRef = useRef<HTMLDivElement>(null);
 
+  const isMobile = useIsMobile();
+
   const openInput = () => {
     setFocused(true)
   }
@@ -21,7 +24,17 @@ const Search = ({ wrapperRef }: Props) => {
     setSearch('')
   }
 
-  const getWidth = () => `${(wrapperRef?.current?.getBoundingClientRect().width ?? 0) - 100}px`;
+  const getWidthByRef = () => `${(wrapperRef?.current?.getBoundingClientRect().width ?? 0) - 100}px`;
+
+  const getWidthInput = () => {
+    if (isMobile && focused)
+      return getWidthByRef();
+
+    if (!isMobile && focused)
+      return "32rem"
+
+    return "5rem";
+  }
 
   useClickOutside(searchRef, closeInput)
 
@@ -45,7 +58,7 @@ const Search = ({ wrapperRef }: Props) => {
           transition={{ duration: 0.3 }}
           initial={{ width: "5rem" }}
           animate={{
-            width: !focused ? "5rem" : getWidth(),
+            width: getWidthInput(),
             cursor: !focused ? "pointer" : "text",
           }}
           onChange={(evt) => {
@@ -59,11 +72,7 @@ const Search = ({ wrapperRef }: Props) => {
           icon='filter.svg'
           initial={{ opacity: 1 }}
           animate={{ opacity: !focused ? 1 : 0 }}
-          transition={{ 
-            duration: 0.8, 
-            delay: 1
-          }}
-          whileHover={{ scale: 0.2 }}
+          whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.75 }}
           onClick={() => {}}
         />
@@ -75,7 +84,7 @@ const Search = ({ wrapperRef }: Props) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: focused ? 1 : 0 }}
           transition={{ duration: 0.3 }}
-          whileHover={{ scale: 0.2 }}
+          whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.75 }}
           onClick={() => {}}
         />
