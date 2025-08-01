@@ -2,6 +2,14 @@ import Button from '@/ui/atoms/button';
 import * as S from './styled';
 
 const Contact = () => {
+  const redirectToInstagram = () => {
+    window.open('https://www.instagram.com/drip_street_wear?utm_source=ig_web_button_share_sheet&igsh=NmRiam4waHo2eXky', '_blank');
+  }
+
+  const redirectToEmail = () => {
+    window.location.href = 'mailto:dripstreetwearstore@gmail.com';
+  }
+
   return (
     <S.Container id="contact">
       <S.Wrapper>
@@ -47,7 +55,7 @@ const Contact = () => {
             <Button 
               label='Seguir no Instagram'
               variant='secondary'
-              onClick={() => {}}
+              onClick={redirectToInstagram}
               styles={{ fontSize: '1.4rem' }}
             />
           </S.Card>
@@ -65,7 +73,7 @@ const Contact = () => {
             <Button 
               label='Enviar E-mail'
               variant='secondary'
-              onClick={() => {}}
+              onClick={redirectToEmail}
               styles={{ fontSize: '1.4rem' }}
             />
           </S.Card>

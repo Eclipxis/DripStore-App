@@ -1,8 +1,20 @@
 import CardShowCollection from '@/ui/molecules/card-show-collection';
 import * as S from './styled';
 import Button from '@/ui/atoms/button';
+import { useRouter } from 'next/navigation';
 
 const ShowCollection = () => {
+  const router = useRouter();
+
+  const goToProducts = (id?: string) => {
+    if (!id) {
+      router.push('products');
+      return;
+    }
+
+    router.push(`products/${id}`)
+  }
+  
   return (
     <S.Container id="products">
       <S.WrapperItems>
@@ -21,6 +33,7 @@ const ShowCollection = () => {
             price={189.90}
             pictures={[]}
             isHide
+            onClick={() => { goToProducts('abc123') }}
           />
 
           <CardShowCollection
@@ -28,6 +41,7 @@ const ShowCollection = () => {
             description='Calça jeans baggy com lavagem especial e cortes únicos'
             pictures={[]}
             isHide={false}
+            onClick={() => { goToProducts('abc123') }}
           />
 
           <CardShowCollection
@@ -36,6 +50,7 @@ const ShowCollection = () => {
             price={79.90}
             pictures={[]}
             isHide={false}
+            onClick={() => { goToProducts('abc123') }}
           />
 
           <CardShowCollection
@@ -43,13 +58,14 @@ const ShowCollection = () => {
             price={89.90}
             pictures={[]}
             isHide={false}
+            onClick={() => { goToProducts('abc123') }}
           />
         </S.WrapperProducts>
 
         <Button 
           label='Ver mais peças'
           variant='secondary'
-          onClick={() => {}}
+          onClick={() => { goToProducts() }}
           styles={{ 
             fontSize: '2rem', 
             fontWeight: 700,

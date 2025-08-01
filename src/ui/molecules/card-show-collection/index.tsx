@@ -8,6 +8,7 @@ interface Props {
   price?: number;
   pictures: string[];
   isHide: boolean;
+  onClick: () => void;
 }
 
 const CardShowCollection = ({
@@ -15,7 +16,8 @@ const CardShowCollection = ({
   description,
   price,
   pictures,
-  isHide
+  isHide,
+  onClick
 }: Props) => {
   return (
     <S.Container>
@@ -39,7 +41,7 @@ const CardShowCollection = ({
           <Button 
             label='Ver Detalhes'
             variant='primary'
-            onClick={() => {}}
+            onClick={onClick}
           />
         </S.MoreDetails>
       </S.WrapperDetails>

@@ -1,7 +1,10 @@
 import Button from '@/ui/atoms/button';
 import * as S from './styled';
+import { useRouter } from 'next/navigation';
 
 const Hero = () => {
+  const router = useRouter();
+  
   const goToContact = () => {
     const component = document.getElementById('contact');
 
@@ -9,6 +12,10 @@ const Hero = () => {
       return;
 
     component.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  const goToProducts = () => {
+    router.push('products')
   }
 
   return (
@@ -42,7 +49,7 @@ const Hero = () => {
           <Button 
             label='Ver Coleção'
             variant='primary'
-            onClick={() => {}}
+            onClick={goToProducts}
             styles={{ 
               width: '100%', 
               height: '4.8rem',
