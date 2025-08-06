@@ -2,11 +2,13 @@
 import { createElement } from "react";
 import { useModals } from "./context";
 import SignInModal from "@/ui/modals/sign-in";
+import SettingsModal from "@/ui/modals/settings";
 
-export type ModalIds = 'sign-in';
+export type ModalIds = 'sign-in' | 'settings';
 
 const ListModals: Record<ModalIds, any> = {
   "sign-in": SignInModal,
+  settings: SettingsModal
 };
 
 const Modals = () => {

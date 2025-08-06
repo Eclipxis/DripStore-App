@@ -41,7 +41,7 @@ const Hero = () => {
             ease: [0, 0.71, 0.2, 1.01]
           }}
         >
-          Eleve seu estilo com as melhores peças de street wear.<br /> 
+          Eleve seu estilo com as melhores peças de street wear. <br /> 
           Autenticidade, qualidade e atitude em cada look.
         </S.Subtitle>
 
