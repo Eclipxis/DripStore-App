@@ -3,12 +3,16 @@ import { createElement } from "react";
 import { useModals } from "./context";
 import SignInModal from "@/ui/modals/sign-in";
 import SettingsModal from "@/ui/modals/settings";
+import FilterModal from "@/ui/modals/filter";
 
-export type ModalIds = 'sign-in' | 'settings';
+export type ModalIds = 'sign-in' 
+  | 'settings'
+  | 'filter';
 
 const ListModals: Record<ModalIds, any> = {
   "sign-in": SignInModal,
-  settings: SettingsModal
+  settings: SettingsModal,
+  filter: FilterModal
 };
 
 const Modals = () => {

@@ -2,6 +2,7 @@ import { RefObject, useRef, useState } from 'react';
 import * as S from './styled'
 import { useClickOutside } from '@/ui/hooks/use-click-outside';
 import useIsMobile from '@/ui/hooks/use-is-mobile';
+import { useModals } from '@/ui/context/modals/context';
 
 interface Props {
   wrapperRef: RefObject<HTMLDivElement | null>
@@ -11,9 +12,26 @@ const Search = ({ wrapperRef }: Props) => {
   const [focused, setFocused] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('');
 
+  const { open, modals } = useModals((state) => state);
+
   const searchRef = useRef<HTMLDivElement>(null);
+  const filterRef = useRef<HTMLButtonElement>(null);
 
   const isMobile = useIsMobile();
+
+  const openModal = () => {
+    const modalAlreadyIsOpen = modals.find(modal => modal === 'filter');
+
+    if (!filterRef || !filterRef.current || !!modalAlreadyIsOpen || focused)
+      return;
+
+    const { top, left } = filterRef.current.getBoundingClientRect()
+
+    const adjustedTop = `${top + 30}px`
+    const adjustedLeft = `${left + 35}px`
+
+    open('filter', { position: { top: adjustedTop, left: adjustedLeft } }) 
+  }
 
   const openInput = () => {
     setFocused(true)
@@ -70,11 +88,12 @@ const Search = ({ wrapperRef }: Props) => {
       {!focused && (
         <S.SearchButton
           icon='filter.svg'
+          ref={filterRef}
           initial={{ opacity: 1 }}
           animate={{ opacity: !focused ? 1 : 0 }}
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.75 }}
-          onClick={() => {}}
+          onClick={openModal}
         />
       )}
 

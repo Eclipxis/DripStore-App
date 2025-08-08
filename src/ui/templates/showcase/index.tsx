@@ -3,8 +3,10 @@ import * as S from './styled';
 import Search from '@/ui/molecules/seach';
 import CardShowCollection from '@/ui/molecules/card-show-collection';
 import { useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Showcase = () => {
+  const router = useRouter();
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   return (
@@ -27,7 +29,7 @@ const Showcase = () => {
             description='Calça jeans baggy com lavagem especial e cortes únicos'
             pictures={[]}
             isHide={false}
-            onClick={() => {}}
+            onClick={() => { router.push('/product/123')  }}
           />
 
           <CardShowCollection

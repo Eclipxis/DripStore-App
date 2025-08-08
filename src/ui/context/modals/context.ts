@@ -26,11 +26,12 @@ export const useModals = create<useModalsProps>((set) => ({
     set((props) => {
       if (modalId) {
         props.modals = props.modals.filter((_modalId) => _modalId !== modalId);
-        return { modals: props.modals };
+        console.log('props.modals ', props.modals)
+        return { modalId: null, modals: props.modals, data: null };
       }
 
       props.modals.pop();
-      return { modals: props.modals };
+      return { modalId: null, modals: props.modals, data: null };
     }),
   goTo: (modalId: ModalIds, data?: any) =>
     set((props) => {

@@ -25,7 +25,7 @@ const SettingsModal = ({ position }: Props) => {
         }
       },
       {
-        label: 'Voltar à página principal',
+        label: 'Página inicial',
         onClick: () => {
           closeAll();
           router.replace('/');
