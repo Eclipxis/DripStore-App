@@ -4,6 +4,7 @@ import Search from '@/ui/molecules/seach';
 import CardShowCollection from '@/ui/molecules/card-show-collection';
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import CreateProductButton from '@/ui/atoms/create-product-button';
 
 const Showcase = () => {
   const router = useRouter();
@@ -15,6 +16,8 @@ const Showcase = () => {
       <Search wrapperRef={wrapperRef} />
 
       <S.WrapperProducts ref={wrapperRef}>
+        <CreateProductButton />
+
         <CardShowCollection
             name='Hoodie Oversized'
             description='Moletom oversized premium com estampa exclusiva'

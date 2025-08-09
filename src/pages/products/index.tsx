@@ -1,7 +1,7 @@
 import Showcase from "@/ui/templates/showcase";
 
-const Products = () => {
+const ProductsPage = () => {
   return <Showcase />
 }
 
-export default Products;
+export default ProductsPage;

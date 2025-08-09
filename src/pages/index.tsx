@@ -6,7 +6,7 @@ import Hero from "@/ui/templates/hero";
 import ShowCollection from "@/ui/templates/show-collection";
 import Head from "next/head";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <>
       <Head>
@@ -35,4 +35,4 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default HomePage;
