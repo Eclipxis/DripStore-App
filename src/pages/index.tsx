@@ -14,7 +14,7 @@ const HomePage = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta httpEquiv="imagetoolbar" content="no" />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="https://drip-store.s3.us-east-1.amazonaws.com/hero-bg.jpg" />
         <meta property="og:title" content="Drip Street Wear Store" />
         <meta 
           property="og:description" 

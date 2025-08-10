@@ -9,7 +9,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100dvh;
 
-  background-image: url('/hero-bg.jpg');
+  background-image: url('https://drip-store.s3.us-east-1.amazonaws.com/hero-bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
