@@ -23,6 +23,18 @@ export class ProductDTO {
 
     return product;
   }
+
+  static toDTO(product: Product): ProductDTO {
+    return {
+      productId: product.id,
+      name: product.name,
+      category: product.category,
+      isHide: product.hide,
+      pictures: product.pictures,
+      description: product.description,
+      price: product.price
+    }
+  }
 }
 
 export class CreateProductDTO {

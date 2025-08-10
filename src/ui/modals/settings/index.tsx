@@ -3,6 +3,7 @@ import * as S from './styled'
 import { useClickOutside } from '@/ui/hooks/use-click-outside';
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import SessionUtils from '@/utils/session';
 
 interface Props {
   position: { top: string, left: string }
@@ -16,6 +17,18 @@ const SettingsModal = ({ position }: Props) => {
   useClickOutside(modalRef, closeAll, ['settings-button'])
 
   const getItems = () => {
+    if (!!SessionUtils.getSession()) {
+      return [
+        {
+          label: 'Página inicial',
+          onClick: () => {
+            closeAll();
+            router.replace('/');
+          }
+        }
+      ]
+    }
+
     return [
       {
         label: 'Login',

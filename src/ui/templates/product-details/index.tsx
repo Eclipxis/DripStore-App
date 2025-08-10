@@ -1,10 +1,15 @@
-// import Carousel from '@/ui/molecules/carousel';
+import Carousel from '@/ui/molecules/carousel';
 import Formatter from '@/utils/formatter';
 import * as S from './styled'
 import Button from '@/ui/atoms/button';
 import { useRouter } from 'next/navigation';
+import Product from '@/entities/product';
 
-const ProductDetails = () => {
+interface Props {
+  product: Product
+}
+
+const ProductDetails = ({ product }: Props) => {
   const router = useRouter();
   
   return (
@@ -17,25 +22,27 @@ const ProductDetails = () => {
       
       <S.Content>
         <S.WrapperCarousel>
-          {/* <Carousel images={[]} /> */}
+          <Carousel images={product.pictures} />
         </S.WrapperCarousel>
 
         <S.WrapperInfo>
           <S.WrapperProductTexts>
-            <S.ProductName>Camiseta Blunt</S.ProductName>
+            <S.ProductName>{product.name}</S.ProductName>
             <S.ProductDescription>
-              Camiseta tamanho G preta manga longa
+              {product.description}
             </S.ProductDescription>
           </S.WrapperProductTexts>
 
           <S.WrapperCategoryAndPrice>
             <div>
               <S.ProductCategoryStrong>Categoria: </S.ProductCategoryStrong>
-              <S.ProductCategory>Camiseta</S.ProductCategory>
+              <S.ProductCategory>{product.category}</S.ProductCategory>
             </div>
 
             <div className='price-and-contact'>
-              <S.ProductPrice>{Formatter.Money(80.99)}</S.ProductPrice>
+              {product.price && (
+                <S.ProductPrice>{Formatter.Money(product.price)}</S.ProductPrice>
+              )}
               <Button 
                 label='Entre em contato'
                 variant='primary'

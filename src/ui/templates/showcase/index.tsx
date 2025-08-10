@@ -2,13 +2,32 @@ import SettingsButton from '@/ui/atoms/settings-button';
 import * as S from './styled';
 import Search from '@/ui/molecules/seach';
 import CardShowCollection from '@/ui/molecules/card-show-collection';
-import { useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import CreateProductButton from '@/ui/atoms/create-product-button';
+import SessionUtils from '@/utils/session';
+import Session from '@/entities/session';
+import { useModals } from '@/ui/context/modals/context';
 
 const Showcase = () => {
+  const { modals } = useModals((state) => state);
   const router = useRouter();
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const [session, setSession] = useState<Session | null>(null);
+
+  const singInIsOpen = useMemo(() => !!modals.find(modal => modal === 'sign-in'), [modals])
+
+  useEffect(() => {
+    if (singInIsOpen)
+      return;
+
+    const sessionExists = SessionUtils.getSession();
+
+    if (!sessionExists)
+      return;
+
+    setSession(sessionExists);
+  }, [singInIsOpen]);
 
   return (
     <S.Container>
@@ -16,7 +35,7 @@ const Showcase = () => {
       <Search wrapperRef={wrapperRef} />
 
       <S.WrapperProducts ref={wrapperRef}>
-        <CreateProductButton />
+        {!!session && <CreateProductButton />}
 
         <CardShowCollection
             name='Hoodie Oversized'

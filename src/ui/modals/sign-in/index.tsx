@@ -2,6 +2,8 @@ import { useModals } from '@/ui/context/modals/context';
 import * as S from './styled'
 import { useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useSignIn } from '@/ui/queries/auth';
+import { encryptPassword } from '@/utils/encrypt';
 
 const SignInModal = () => {
   const { closeAll } = useModals((state) => state);
@@ -9,7 +11,16 @@ const SignInModal = () => {
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const handleLogin = () => {}
+  const { signIn, isSuccess, session } = useSignIn();
+
+  const handleLogin = async () => {
+    if (!userCode || !password)
+      return;
+
+    const cryptoPassword = await encryptPassword(password);
+
+    signIn({ code: userCode, password: cryptoPassword });
+  }
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -18,6 +29,15 @@ const SignInModal = () => {
       document.body.style.overflow = '';
     };
   }, []);
+
+  useEffect(() => {
+    if (!isSuccess)
+      return;
+
+    sessionStorage.setItem('session', JSON.stringify(session))
+
+    closeAll();
+  }, [isSuccess, closeAll, session])
 
   return (
     <S.Overlay onClick={closeAll}>

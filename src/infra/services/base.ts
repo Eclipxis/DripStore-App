@@ -1,15 +1,14 @@
 import Session from "@/entities/session";
+import SessionUtils from "@/utils/session";
 
 class BaseService {
   private session: Session = new Session();
 
   constructor () {
-    const sessionString = sessionStorage.getItem('session');
+    const sessionObj = SessionUtils.getSession();
 
-    if (!sessionString)
-      throw new Error('Session não encontrada!');
-
-    const sessionObj = JSON.parse(sessionString);
+    if (!sessionObj)
+      return;
 
     this.session.id = sessionObj.id;
     this.session.name = sessionObj.name;

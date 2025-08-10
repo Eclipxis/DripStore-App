@@ -39,6 +39,9 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async create (product: Product): Promise<void> {
+    if (this.isLogged())
+      throw new Error('É necessário estar logado para realizar a ação');
+
     await this.httpClient.post({
       url: `${this.BASE_URL}/product`,
       headers: this.headers,
@@ -47,6 +50,9 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async update (product: Product, picturePayloads: PictureDTO[]): Promise<void> {
+    if (this.isLogged())
+      throw new Error('É necessário estar logado para realizar a ação');
+
     await this.httpClient.put({
       url: `${this.BASE_URL}/product/${product.id}`,
       headers: this.headers,
@@ -55,6 +61,9 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async delete (productId: string): Promise<void> {
+    if (this.isLogged())
+      throw new Error('É necessário estar logado para realizar a ação');
+
     await this.httpClient.delete({
       url: `${this.BASE_URL}/product/${productId}`,
       headers: this.headers,
@@ -62,6 +71,9 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async hide (productId: string): Promise<void> {
+    if (this.isLogged())
+      throw new Error('É necessário estar logado para realizar a ação');
+
     await this.httpClient.put({
       url: `${this.BASE_URL}/product/${productId}/hide`,
       headers: this.headers,
@@ -69,6 +81,9 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async show (productId: string): Promise<void> {
+    if (this.isLogged())
+      throw new Error('É necessário estar logado para realizar a ação');
+    
     await this.httpClient.put({
       url: `${this.BASE_URL}/product/${productId}/show`,
       headers: this.headers,
