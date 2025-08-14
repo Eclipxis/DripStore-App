@@ -40,7 +40,7 @@ export const WrapperCarousel = styled.div`
   @media (min-width: 768px) {
     flex: 1;
     height: 70%;
-    max-width: 500px;
+    max-width: max-content;
     border-radius: 12px;
     overflow: hidden;
   }
@@ -102,6 +102,8 @@ export const ProductDescription = styled.p`
   font-size: 1.8rem;
   color: #3f3f3fff;
   text-align: justify;
+  white-space: pre-wrap;
+  word-break: break-word;
 `;
 
 export const ProductCategory = styled.p`

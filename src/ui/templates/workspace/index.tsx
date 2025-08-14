@@ -1,43 +1,92 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/navigation'
-import { BiBookAdd } from 'react-icons/bi';
 import * as S from './styled'
 import Button from '@/ui/atoms/button';
 import SelectComponent from '@/ui/molecules/select';
 import Switch from '@/ui/atoms/switch';
+import { useCreateProduct } from '@/ui/queries/product';
+import useMutableEntity from '@/ui/hooks/use-mutable-entity';
+import Product from '@/entities/product';
+import { useEffect } from 'react';
+import Formatter from '@/utils/formatter';
+import Carousel from '@/ui/molecules/carousel';
 
 const Workspace = () => {
+  const { createProduct, isSuccess } = useCreateProduct();
   const router = useRouter();
+
+  const product = useMutableEntity(new Product());
+
+  const returnToProduct = () => router.push('/products');
+
+  const submit = () => {
+    if (product.isEmpty())
+      return;
+
+    createProduct({ product });
+  }
+
+  useEffect(() => {
+    if (!isSuccess)
+      return;
+
+    returnToProduct();
+  }, [isSuccess])
 
   return (
     <S.Container>
       <S.ReturnButton 
         size={25}
-        onClick={() => { router.push('/products') }} 
+        onClick={returnToProduct} 
         color='#0d0d0d' 
       />
 
       <S.Content>
         <S.WrapperCarousel>
-          <BiBookAdd size={100} color='#239cddff' />
-          <S.TitleImages>Adicionar imagens</S.TitleImages>
+          <Carousel
+            created
+            images={product.pictures}
+            onAddImages={(base64s) => {
+              product.withPictures(base64s);
+            }}
+            onRemoveImage={(pictureIndex) => {
+              product.removePicture(pictureIndex);
+            }}
+          />
         </S.WrapperCarousel>
 
         <S.WrapperInputs>
-          <S.Input placeholder='Nome do produto' />
-          <S.TextArea placeholder='Descrição do produto...' />
+          <S.Input 
+            autoFocus
+            placeholder='Nome do produto'
+            value={product.name}
+            onChange={(evt) => { product.withName(evt.target.value) }}
+          />
+
+          <S.TextArea 
+            placeholder='Descrição do produto...' 
+            value={product.description}
+            onChange={(evt) => { product.withDescription(evt.target.value) }}
+          />
         
-          <S.Input placeholder='Preço - R$ 00,00' />
+          <S.Input
+            placeholder='R$ 0,00'
+            value={Formatter.FormatCurrency(product.price)}
+            onChange={(evt) => { 
+              product.withPrice(Formatter.ParseCurrency(evt.target.value)) 
+            }}
+          />
 
           <S.WrapperSelectAndSwitch>
-            <SelectComponent />
-            <Switch />
+            <SelectComponent product={product} />
+            <Switch value={product.hide} onClick={() => { product.toggleHide() }} />
           </S.WrapperSelectAndSwitch>
 
           <S.ButtonWrapper>
             <Button 
               label='Criar produto'
               variant='secondary'
-              onClick={() => {}}
+              onClick={submit}
             />
           </S.ButtonWrapper>
         </S.WrapperInputs>

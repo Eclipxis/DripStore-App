@@ -1,6 +1,7 @@
 import Formatter from '@/utils/formatter';
 import * as S from './styled';
 import Button from '@/ui/atoms/button';
+import Carousel from '../carousel';
 
 interface Props {
   name: string;
@@ -28,14 +29,19 @@ const CardShowCollection = ({
           </S.SoldOutLabel>
         </S.Overlay>
       )}
-      <S.WrapperImage />
+
+      <S.WrapperImage>
+        <Carousel 
+          images={pictures}
+        />
+      </S.WrapperImage>
       <S.WrapperDetails>
         <S.NameDetails>{name}</S.NameDetails>
         <S.DescriptionDetails>{description}</S.DescriptionDetails>
 
         <S.MoreDetails>
           <S.PriceDetails>
-            {Formatter.Money(price)}
+            {Formatter.FormatCurrency(price)}
           </S.PriceDetails>
 
           <Button 

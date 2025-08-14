@@ -26,7 +26,7 @@ class ProductService extends BaseService implements IProductService {
 
     pagination.page = dto.page;
     pagination.pages = dto.pages;
-    pagination.data = dto.data;
+    pagination.data = dto.data.map(ProductDTO.toProduct);
     
     return pagination;
   }
@@ -39,7 +39,7 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async create (product: Product): Promise<void> {
-    if (this.isLogged())
+    if (!this.isLogged())
       throw new Error('É necessário estar logado para realizar a ação');
 
     await this.httpClient.post({

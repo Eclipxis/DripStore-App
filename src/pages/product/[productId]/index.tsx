@@ -14,7 +14,7 @@ interface ProductDetailsProps {
 
 export default function ProductDetailsPage ({ stringfiedProduct }: ProductDetailsProps) {
   const productDTO = stringfiedProduct ? JSON.parse(stringfiedProduct) as ProductDTO : undefined
-  
+
   return (
     <>
       <Head>

@@ -23,7 +23,7 @@ export const Container = styled(motion.div)<{ top: string, left: string }>`
 export const Item = styled.div<{ isLastItem: boolean }>`
   display: flex;
   align-items: center;
-  padding: 1.8rem 2rem;
+  padding: 1.2rem 2rem;
   width: 100%;
   height: 100%;
   cursor: pointer;

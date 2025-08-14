@@ -20,8 +20,12 @@ export const Container = styled(motion.div)`
 export const WrapperImage = styled.div`
   width: 100%;
   height: 33.2rem;
-  background-color: #fff;
   border-radius: 1.2rem 1.2rem 0rem 0rem;
+
+  & > .swiper {
+    min-height: 0rem !important;
+    border-radius: 1.2rem 1.2rem 0rem 0rem;
+  }
 
   @media (min-width: 700px) {
     min-height: 31.8rem;
@@ -49,6 +53,8 @@ export const DescriptionDetails = styled.p`
   color: #a1a1aa;
   font-size: 1.4rem;
   padding-top: 0.5rem;
+  white-space: pre-wrap;
+  word-break: break-word;
 `;
 
 export const PriceDetails = styled.p`

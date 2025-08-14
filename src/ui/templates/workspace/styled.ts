@@ -42,6 +42,8 @@ export const Content = styled.div`
   }
 `;
 
+export const CarouselContent = styled.div``;
+
 export const WrapperCarousel = styled.div`
   display: flex;
   flex-direction: column;
@@ -54,7 +56,6 @@ export const WrapperCarousel = styled.div`
   min-height: 40rem;
   background-color: transparent;
   border-radius: 1.2rem;
-  border: 5px dashed #239cddff;
 
   @media (min-width: 768px) {
     margin-top: 0rem;
@@ -81,6 +82,7 @@ export const WrapperInputs = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 3rem;
+  padding-top: 2rem;
 
   @media (min-width: 768px) {
     max-width: 30rem;

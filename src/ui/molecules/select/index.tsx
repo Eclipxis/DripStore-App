@@ -1,21 +1,73 @@
+import { Category } from '@/entities/category';
+import Product from '@/entities/product';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-const SelectComponent = () => {
+type SelectCategory = {
+  label: string,
+  category: Category
+}
+
+const Categories: SelectCategory[] = [
+  {
+    label: 'Moletom',
+    category: Category.HOODIES
+  },
+  {
+    label: 'Camiseta',
+    category: Category.TSHIRTS
+  },
+  {
+    label: 'Shorts',
+    category: Category.SHORTS
+  },
+  {
+    label: 'Calças',
+    category: Category.PANTS
+  },
+  {
+    label: 'Conjuntos',
+    category: Category.OUTFITS
+  },
+  {
+    label: 'Regata',
+    category: Category.TANKTOP
+  },
+  {
+    label: 'Outros',
+    category: Category.OTHERS
+  },
+];
+
+interface Props {
+  product: Product
+}
+
+const SelectComponent = ({ product }: Props) => {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="select-category-label">Categoria</InputLabel>
+        <InputLabel 
+          id="select-category-label" 
+          sx={{ fontSize: '1.4rem' }}
+        >
+          Categoria
+        </InputLabel>
         <Select
           labelId="select-category-label"
           id="select-category"
           label="Categoria"
-          onChange={() => {}}
+          sx={{ fontSize: '1.4rem' }}
+          onChange={(evt) => { product.withCategory(evt.target.value as Category) }}
         >
-          <MenuItem>Camiseta</MenuItem>
-          <MenuItem>Short</MenuItem>
-          <MenuItem>Calça</MenuItem>
-          <MenuItem>Moletom</MenuItem>
-          <MenuItem>Outros</MenuItem>
+          {Categories.map(category => (
+            <MenuItem 
+              sx={{ fontSize: '1.4rem' }}
+              key={category.category}
+              value={category.category}  
+            >
+              {category.label}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>
