@@ -2,9 +2,12 @@ import CardShowCollection from '@/ui/molecules/card-show-collection';
 import * as S from './styled';
 import Button from '@/ui/atoms/button';
 import { useRouter } from 'next/navigation';
+import { useGetProducts } from '@/ui/queries/product';
 
 const ShowCollection = () => {
   const router = useRouter();
+
+  const { products } = useGetProducts({ page: 1, perPage: 4 })
 
   const goToProducts = (id?: string) => {
     if (!id) {
@@ -12,7 +15,7 @@ const ShowCollection = () => {
       return;
     }
 
-    router.push(`products/${id}`)
+    router.push(`product/${id}`)
   }
   
   return (
@@ -27,39 +30,17 @@ const ShowCollection = () => {
         </S.WrapperTexts>
 
         <S.WrapperProducts>
-          <CardShowCollection
-            name='Hoodie Oversized'
-            description='Moletom oversized premium com estampa exclusiva'
-            price={189.90}
-            pictures={[]}
-            isHide
-            onClick={() => { goToProducts('abc123') }}
-          />
-
-          <CardShowCollection
-            name='Calça Baggy'
-            description='Calça jeans baggy com lavagem especial e cortes únicos'
-            pictures={[]}
-            isHide={false}
-            onClick={() => { goToProducts('abc123') }}
-          />
-
-          <CardShowCollection
-            name='Boné Snapback'
-            description='Boné snapback bordado com logo exclusivo da marca'
-            price={79.90}
-            pictures={[]}
-            isHide={false}
-            onClick={() => { goToProducts('abc123') }}
-          />
-
-          <CardShowCollection
-            name='Camiseta Graphic'
-            price={89.90}
-            pictures={[]}
-            isHide={false}
-            onClick={() => { goToProducts('abc123') }}
-          />
+          {(products?.data ?? []).map((product) => (
+            <CardShowCollection
+              key={product.id}
+              name={product.name}
+              description={product.description}
+              price={product.price}
+              pictures={product.pictures}
+              isHide={product.hide}
+              onClick={() => { goToProducts(product.id) }}
+            />
+          ))}
         </S.WrapperProducts>
 
         <Button 

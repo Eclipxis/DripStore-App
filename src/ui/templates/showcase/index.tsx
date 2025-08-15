@@ -9,15 +9,25 @@ import SessionUtils from '@/utils/session';
 import Session from '@/entities/session';
 import { useModals } from '@/ui/context/modals/context';
 import { useGetProducts } from '@/ui/queries/product';
+import { useRequestByScroll } from '@/ui/hooks/use-request-by-scroll';
+import { useStore } from '@/ui/context/store';
 
 const Showcase = () => {
   const router = useRouter();
+  const { search, selectedCategories } = useStore(({ queryContext }) => queryContext);
   const { modals } = useModals((state) => state);
 
   const [session, setSession] = useState<Session | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null)
 
-  const { products } = useGetProducts({ page: 1, perPage: 5 });
+  const { lastElementRef, perPage } = useRequestByScroll(5);
+
+  const { products } = useGetProducts({ 
+    page: 1, 
+    perPage, 
+    search, 
+    categories: selectedCategories
+  });
 
   const singInIsOpen = useMemo(() => !!modals.find(modal => modal === 'sign-in'), [modals])
 
@@ -41,8 +51,9 @@ const Showcase = () => {
       <S.WrapperProducts ref={wrapperRef}>
         {!!session && <CreateProductButton />}
 
-        {(products?.data ?? []).map((product) => (
+        {(products?.data ?? []).map((product, index) => (
           <CardShowCollection
+            ref={(node) => { lastElementRef(node, index) }}
             key={product.id}
             name={product.name}
             description={product.description}

@@ -1,9 +1,10 @@
 import Checkbox from '@mui/material/Checkbox'
 import * as S from './styled'
 import { useModals } from '@/ui/context/modals/context'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useClickOutside } from '@/ui/hooks/use-click-outside'
 import { Category } from '@/entities/category'
+import { useStore } from '@/ui/context/store'
 
 type TCategoriesFilter = { label: string, category: Category }
 
@@ -43,16 +44,21 @@ const Categories: TCategoriesFilter[] = [
 ];
 
 const FilterModal = ({ position }: Props) => {
+  const { isSelectedCategory, selectCategory, removeCategory } = useStore(({ queryContext }) => queryContext);
   const { closeAll } = useModals((state) => state);
 
-  const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
   const filterRef = useRef<HTMLDivElement>(null);
 
-  const isChecked = (category: Category) => {
-    return !!selectedCategories.find(selected => selected === category);
-  }
-
   useClickOutside(filterRef, closeAll);
+
+  const toggleSelect = (category: Category) => {
+    if (!isSelectedCategory(category)) {
+      selectCategory(category);
+      return;
+    }
+
+    removeCategory(category);
+  }
 
   return (
     <S.Container 
@@ -70,9 +76,12 @@ const FilterModal = ({ position }: Props) => {
         <S.Item 
           key={info.category}
           isLastItem={index === (Categories.length - 1)}
-          onClick={() => { setSelectedCategories(old => [...old, info.category]) }}
+          onClick={() => { toggleSelect(info.category); }}
         >
-          <Checkbox size='large' checked={isChecked(info.category)} />
+          <Checkbox 
+            size='large' 
+            checked={isSelectedCategory(info.category)} 
+          />
           <S.Text>
             {info.label}
           </S.Text>

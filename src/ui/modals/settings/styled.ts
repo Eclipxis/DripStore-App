@@ -1,12 +1,12 @@
 import { motion } from "motion/react";
 import styled, { css } from "styled-components";
 
-export const Container = styled(motion.div)<{ top: string, left: string }>`
+export const Container = styled(motion.div)`
   width: 16rem;
   height: 12rem;
-  position: absolute;
-  top: ${props => props.top};
-  left: ${props => props.left};
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
 
   background-color: #f4f4f4;
   border-radius: 0.6rem;

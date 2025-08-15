@@ -82,5 +82,5 @@ export class ParamsGetProductDTO {
   page!: number;
   perPage!: number;
   search?: string;
-  categories?: Category[]
+  categories?: Category[];
 }

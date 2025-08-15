@@ -17,9 +17,14 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async getProducts (params: ParamsGetProductDTO): Promise<Pagination<Product[]>> {
+    const sp = new URLSearchParams();
+    sp.set('page', String(params.page));
+    sp.set('perPage', String(params.perPage));
+    if (params.search) sp.set('search', params.search);
+    params.categories?.forEach(c => sp.append('categories', c));
+
     const dto = await this.httpClient.get({
-      url: `${this.BASE_URL}/product`,
-      params
+      url: `${this.BASE_URL}/product?${sp.toString()}`
     });
 
     const pagination = new Pagination<Product[]>()

@@ -24,7 +24,7 @@ export const useGetProducts = (params: ParamsGetProductDTO) => {
   const productService = useDeps<IProductService>('ProductService');
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['products'],
+    queryKey: ['products', params],
     queryFn: async () => productService.getProducts(params),
   });
 

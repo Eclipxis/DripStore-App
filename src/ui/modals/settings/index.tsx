@@ -1,20 +1,20 @@
-import { useModals } from '@/ui/context/modals/context'
 import * as S from './styled'
 import { useClickOutside } from '@/ui/hooks/use-click-outside';
-import { useRef } from 'react';
+import { Dispatch, SetStateAction, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import SessionUtils from '@/utils/session';
 
 interface Props {
-  position: { top: string, left: string }
+  setIsOpenSettings: Dispatch<SetStateAction<boolean>>
 }
 
-const SettingsModal = ({ position }: Props) => {
-  const { open, closeAll } = useModals((state) => state);
+const SettingsModal = ({ setIsOpenSettings }: Props) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  useClickOutside(modalRef, closeAll, ['settings-button'])
+  const closeModal = () => setIsOpenSettings(false);
+
+  useClickOutside(modalRef, closeModal, ['settings-button'])
 
   const getItems = () => {
     if (!!SessionUtils.getSession()) {
@@ -22,7 +22,7 @@ const SettingsModal = ({ position }: Props) => {
         {
           label: 'Página inicial',
           onClick: () => {
-            closeAll();
+            closeModal();
             router.replace('/');
           }
         }
@@ -33,14 +33,14 @@ const SettingsModal = ({ position }: Props) => {
       {
         label: 'Login',
         onClick: () => {
-          closeAll();
+          closeModal();
           open('sign-in');
         }
       },
       {
         label: 'Página inicial',
         onClick: () => {
-          closeAll();
+          closeModal();
           router.replace('/');
         }
       }
@@ -50,8 +50,6 @@ const SettingsModal = ({ position }: Props) => {
   return (
     <S.Container
       ref={modalRef}
-      top={position.top} 
-      left={position.left} 
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{

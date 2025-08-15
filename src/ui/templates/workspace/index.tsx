@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation'
 import * as S from './styled'
 import Button from '@/ui/atoms/button';
-import SelectComponent from '@/ui/molecules/select';
+import SelectCategory from '@/ui/molecules/select-category';
 import Switch from '@/ui/atoms/switch';
 import { useCreateProduct } from '@/ui/queries/product';
 import useMutableEntity from '@/ui/hooks/use-mutable-entity';
@@ -78,7 +78,7 @@ const Workspace = () => {
           />
 
           <S.WrapperSelectAndSwitch>
-            <SelectComponent product={product} />
+            <SelectCategory product={product} />
             <Switch value={product.hide} onClick={() => { product.toggleHide() }} />
           </S.WrapperSelectAndSwitch>
 

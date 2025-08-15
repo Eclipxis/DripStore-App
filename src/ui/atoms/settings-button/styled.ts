@@ -1,6 +1,10 @@
 import { motion } from "motion/react";
 import styled from "styled-components";
 
+export const Container = styled.div`
+  position: relative;
+`;
+
 export const Button = styled(motion.button)`
   position: fixed;
   bottom: 1.3em;

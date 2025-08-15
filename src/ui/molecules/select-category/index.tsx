@@ -2,12 +2,12 @@ import { Category } from '@/entities/category';
 import Product from '@/entities/product';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-type SelectCategory = {
+type TSelectCategory = {
   label: string,
   category: Category
 }
 
-const Categories: SelectCategory[] = [
+const Categories: TSelectCategory[] = [
   {
     label: 'Moletom',
     category: Category.HOODIES
@@ -42,7 +42,7 @@ interface Props {
   product: Product
 }
 
-const SelectComponent = ({ product }: Props) => {
+const SelectCategory = ({ product }: Props) => {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
@@ -74,4 +74,4 @@ const SelectComponent = ({ product }: Props) => {
   )
 }
 
-export default SelectComponent;
+export default SelectCategory;

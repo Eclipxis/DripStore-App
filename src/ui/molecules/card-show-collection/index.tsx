@@ -2,6 +2,7 @@ import Formatter from '@/utils/formatter';
 import * as S from './styled';
 import Button from '@/ui/atoms/button';
 import Carousel from '../carousel';
+import { ForwardedRef, forwardRef } from 'react';
 
 interface Props {
   name: string;
@@ -19,9 +20,9 @@ const CardShowCollection = ({
   pictures,
   isHide,
   onClick
-}: Props) => {
+}: Props, ref: ForwardedRef<HTMLDivElement>) => {
   return (
-    <S.Container>
+    <S.Container ref={ref}>
       {isHide && (
         <S.Overlay>
           <S.SoldOutLabel>
@@ -55,4 +56,4 @@ const CardShowCollection = ({
   );
 }
 
-export default CardShowCollection;
+export default forwardRef(CardShowCollection);

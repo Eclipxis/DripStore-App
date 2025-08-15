@@ -1,34 +1,23 @@
-import { useModals } from '@/ui/context/modals/context';
 import * as S from './styled';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import SettingsModal from '@/ui/modals/settings';
 
 const SettingsButton = () => {
-  const { open, modals } = useModals((state) => state);
-
+  const [openSettings, setIsOpenSettings] = useState<boolean>(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const openModal = () => {
-    const modalAlreadyIsOpen = modals.find(modal => modal === 'settings');
-
-    if (!buttonRef || !buttonRef.current || !!modalAlreadyIsOpen)
-      return;
-
-    const { top, left } = buttonRef.current.getBoundingClientRect()
-
-    const adjustedTop = `${top - 95}px`
-    const adjustedLeft = `${left - 120}px`
-
-    open('settings', { position: { top: adjustedTop, left: adjustedLeft } }) 
-  }
-
   return (
-    <S.Button
-      id='settings-button'
-      ref={buttonRef}
-      whileHover={{ scale: 1.2 }}
-      whileTap={{ scale: 0.75 }}
-      onClick={openModal}
-    />
+    <S.Container>
+      {openSettings && <SettingsModal setIsOpenSettings={setIsOpenSettings} />}
+
+      <S.Button
+        id='settings-button'
+        ref={buttonRef}
+        whileHover={{ scale: 1.2 }}
+        whileTap={{ scale: 0.75 }}
+        onClick={() => { setIsOpenSettings(true) }}
+      />
+    </S.Container>
   )
 }
 

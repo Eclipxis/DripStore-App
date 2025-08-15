@@ -3,14 +3,15 @@ import * as S from './styled'
 import { useClickOutside } from '@/ui/hooks/use-click-outside';
 import useIsMobile from '@/ui/hooks/use-is-mobile';
 import { useModals } from '@/ui/context/modals/context';
+import { useStore } from '@/ui/context/store';
 
 interface Props {
   wrapperRef: RefObject<HTMLDivElement | null>
 }
 
 const Search = ({ wrapperRef }: Props) => {
+  const { search, setSearch } = useStore(({ queryContext }) => queryContext);
   const [focused, setFocused] = useState<boolean>(false);
-  const [search, setSearch] = useState<string>('');
 
   const { open, modals } = useModals((state) => state);
 
@@ -39,10 +40,9 @@ const Search = ({ wrapperRef }: Props) => {
 
   const closeInput = () => {
     setFocused(false)
-    setSearch('')
   }
 
-  const getWidthByRef = () => `${(wrapperRef?.current?.getBoundingClientRect().width ?? 0) - 100}px`;
+  const getWidthByRef = () => `${(wrapperRef?.current?.getBoundingClientRect().width ?? 0) - 50}px`;
 
   const getWidthInput = () => {
     if (isMobile && focused)
@@ -71,7 +71,7 @@ const Search = ({ wrapperRef }: Props) => {
 
         <S.SearchInput
           autoFocus={false}
-          value={search}
+          value={focused ? search : ''}
           onFocus={openInput}
           transition={{ duration: 0.3 }}
           initial={{ width: "5rem" }}
@@ -94,18 +94,6 @@ const Search = ({ wrapperRef }: Props) => {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.75 }}
           onClick={openModal}
-        />
-      )}
-
-      {focused && (
-        <S.SearchButton
-          icon='search.svg'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: focused ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.75 }}
-          onClick={() => {}}
         />
       )}
     </S.Container>
