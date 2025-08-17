@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 
 export const Container = styled(motion.div)`
   width: 16rem;
-  height: 12rem;
   position: fixed;
   bottom: 5rem;
   right: 5rem;
@@ -26,6 +25,7 @@ export const Item = styled.div<{ isLastItem: boolean }>`
   width: 100%;
   height: 100%;
   cursor: pointer;
+  padding: 1.6rem;
 
   ${props => !props.isLastItem && css`
     border-bottom: 1px solid #777777ff;

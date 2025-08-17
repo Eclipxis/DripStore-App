@@ -5,6 +5,9 @@ import Button from '@/ui/atoms/button';
 import { useRouter } from 'next/navigation';
 import Product from '@/entities/product';
 import { Category } from '@/entities/category';
+import { BiEdit, BiSolidTrash } from 'react-icons/bi';
+import SessionUtils from '@/utils/session';
+import { useDeleteProduct } from '@/ui/queries/product';
 
 interface Props {
   product: Product
@@ -22,6 +25,7 @@ const Categories: Record<Category, string> = {
 
 const ProductDetails = ({ product }: Props) => {
   const router = useRouter();
+  const { deleteProduct } = useDeleteProduct();
   
   return (
     <S.Container>
@@ -37,6 +41,25 @@ const ProductDetails = ({ product }: Props) => {
         </S.WrapperCarousel>
 
         <S.WrapperInfo>
+          {SessionUtils.isLogged() && (
+            <S.DeleteButton>
+              <BiSolidTrash
+                size={20} 
+                color='#ffffff' 
+                onClick={() => { deleteProduct({ productId: product.id }) }} 
+              />
+            </S.DeleteButton>
+          )}
+          {SessionUtils.isLogged() && (
+            <S.UpdateButton>
+              <BiEdit 
+                size={20} 
+                color='#ffffff' 
+                onClick={() => { router.push(`/product/workspace?productid=${product.id}`) }} 
+              />
+            </S.UpdateButton>
+          )}
+
           <S.WrapperProductTexts>
             <S.ProductName>{product.name}</S.ProductName>
             <S.ProductDescription>

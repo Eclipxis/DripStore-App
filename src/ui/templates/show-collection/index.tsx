@@ -3,6 +3,7 @@ import * as S from './styled';
 import Button from '@/ui/atoms/button';
 import { useRouter } from 'next/navigation';
 import { useGetProducts } from '@/ui/queries/product';
+import FeedBackProductsNotFound from '@/ui/molecules/feedbacks/products-not-found';
 
 const ShowCollection = () => {
   const router = useRouter();
@@ -30,6 +31,8 @@ const ShowCollection = () => {
         </S.WrapperTexts>
 
         <S.WrapperProducts>
+          {!products?.data.length && <FeedBackProductsNotFound />}
+
           {(products?.data ?? []).map((product) => (
             <CardShowCollection
               key={product.id}

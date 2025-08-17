@@ -3,6 +3,7 @@ import * as S from './styled';
 import Button from '@/ui/atoms/button';
 import Carousel from '../carousel';
 import { ForwardedRef, forwardRef } from 'react';
+import SessionUtils from '@/utils/session';
 
 interface Props {
   name: string;
@@ -49,6 +50,7 @@ const CardShowCollection = ({
             label='Ver Detalhes'
             variant='primary'
             onClick={onClick}
+            styles={{ zIndex: SessionUtils.isLogged() ? '2' : '1' }}
           />
         </S.MoreDetails>
       </S.WrapperDetails>

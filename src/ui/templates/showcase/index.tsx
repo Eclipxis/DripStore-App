@@ -1,3 +1,4 @@
+ 
 import SettingsButton from '@/ui/atoms/settings-button';
 import * as S from './styled';
 import Search from '@/ui/molecules/seach';
@@ -11,6 +12,7 @@ import { useModals } from '@/ui/context/modals/context';
 import { useGetProducts } from '@/ui/queries/product';
 import { useRequestByScroll } from '@/ui/hooks/use-request-by-scroll';
 import { useStore } from '@/ui/context/store';
+import FeedBackProductsNotFound from '@/ui/molecules/feedbacks/products-not-found';
 
 const Showcase = () => {
   const router = useRouter();
@@ -22,7 +24,7 @@ const Showcase = () => {
 
   const { lastElementRef, perPage } = useRequestByScroll(5);
 
-  const { products } = useGetProducts({ 
+  const { products, isLoading } = useGetProducts({ 
     page: 1, 
     perPage, 
     search, 
@@ -50,6 +52,8 @@ const Showcase = () => {
 
       <S.WrapperProducts ref={wrapperRef}>
         {!!session && <CreateProductButton />}
+
+        {!products?.data.length && !isLoading && <FeedBackProductsNotFound darkmode />}
 
         {(products?.data ?? []).map((product, index) => (
           <CardShowCollection

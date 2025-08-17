@@ -3,12 +3,14 @@ import { useClickOutside } from '@/ui/hooks/use-click-outside';
 import { Dispatch, SetStateAction, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import SessionUtils from '@/utils/session';
+import { useModals } from '@/ui/context/modals/context';
 
 interface Props {
   setIsOpenSettings: Dispatch<SetStateAction<boolean>>
 }
 
 const SettingsModal = ({ setIsOpenSettings }: Props) => {
+  const { open } = useModals((state) => state);
   const modalRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 

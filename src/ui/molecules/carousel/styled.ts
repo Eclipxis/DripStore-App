@@ -17,6 +17,7 @@ export const TrashButton = styled.button`
   cursor: pointer;
   display: flex;
 `;
+
 export const WrapperCarousel = styled.label`
   display: flex;
   flex-direction: column;

@@ -55,25 +55,20 @@ export class CreateProductDTO {
   }
 }
 
-export class PictureDTO {
-  picture!: string;
-  index!: number;
-}
-
 export class UpdateProductDTO {
   name!: string;
   category!: Category;
   description?: string;
   price?: number;
-  picturePayloads!: PictureDTO[]
+  pictures!: string[];
 
-  static toDTO(product: Product, picturePayloads: PictureDTO[]): UpdateProductDTO {
+  static toDTO(product: Product): UpdateProductDTO {
     return {
       name: product.name,
       category: product.category,
       description: product.description,
       price: product.price,
-      picturePayloads
+      pictures: product.pictures
     }
   }
 }

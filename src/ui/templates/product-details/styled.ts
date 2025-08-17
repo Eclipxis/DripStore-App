@@ -47,6 +47,7 @@ export const WrapperCarousel = styled.div`
 `;
 
 export const WrapperInfo = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -58,6 +59,30 @@ export const WrapperInfo = styled.div`
     justify-content: center;
   }
 `;
+
+export const UpdateButton = styled.button`
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  padding: 0.6rem;
+  cursor: pointer;
+  display: flex;
+`
+
+export const DeleteButton = styled.button`
+  position: absolute;
+  top: 0.8rem;
+  right: 4.8rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  padding: 0.6rem;
+  cursor: pointer;
+  display: flex;
+`
 
 export const WrapperProductTexts = styled.div`
   display: flex;

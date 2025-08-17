@@ -23,6 +23,10 @@ class SessionUtils {
 
     return session;
   }
+
+  static isLogged() {
+    return !!sessionStorage.getItem('session');
+  }
 }
 
 export default SessionUtils;

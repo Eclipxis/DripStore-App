@@ -8,7 +8,7 @@ interface Props {
 const Switch = ({ value, onClick }: Props) => {
   return (
     <S.Container>
-      <S.IOSSwitch value={value} onClick={onClick} />
+      <S.IOSSwitch checked={value} onClick={onClick} />
       <S.Text>Produto esgotado</S.Text>
     </S.Container>
   )

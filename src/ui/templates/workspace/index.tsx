@@ -4,40 +4,80 @@ import * as S from './styled'
 import Button from '@/ui/atoms/button';
 import SelectCategory from '@/ui/molecules/select-category';
 import Switch from '@/ui/atoms/switch';
-import { useCreateProduct } from '@/ui/queries/product';
+import { useCreateProduct, useHideProduct, useShowProduct, useUpdateProduct } from '@/ui/queries/product';
 import useMutableEntity from '@/ui/hooks/use-mutable-entity';
 import Product from '@/entities/product';
 import { useEffect } from 'react';
 import Formatter from '@/utils/formatter';
 import Carousel from '@/ui/molecules/carousel';
 
-const Workspace = () => {
-  const { createProduct, isSuccess } = useCreateProduct();
+interface Props {
+  product?: Product
+}
+
+const Workspace = ({ product: givenProduct }: Props) => {
   const router = useRouter();
+  const { createProduct, isSuccess: createIsSuccess } = useCreateProduct();
+  const { updateProduct, isSuccess: updateIsSuccess } = useUpdateProduct();
+  const { hideProduct } = useHideProduct();
+  const { showProduct } = useShowProduct();
 
-  const product = useMutableEntity(new Product());
+  const product = useMutableEntity(givenProduct ?? new Product());
 
-  const returnToProduct = () => router.push('/products');
+  const isEdit = () => !!givenProduct;
+
+  const returnToProducts = () => router.push('/products');
+  const returnToProduct = () => router.push(`/product/${givenProduct!.id}`);
 
   const submit = () => {
     if (product.isEmpty())
       return;
 
-    createProduct({ product });
+    if (!isEdit()) {
+      createProduct({ product });
+      return;
+    }
+
+    updateProduct({ product });
+  }
+
+  const toggleHide = () => {
+    product.toggleHide()
+
+    if (product.hide) {
+      hideProduct({ productId: product.id })
+      return;
+    }
+
+    showProduct({ productId: product.id })
   }
 
   useEffect(() => {
-    if (!isSuccess)
+    if (!createIsSuccess)
+      return;
+
+    returnToProducts();
+  }, [createIsSuccess])
+
+  useEffect(() => {
+    if (!updateIsSuccess)
       return;
 
     returnToProduct();
-  }, [isSuccess])
+  }, [updateIsSuccess])
 
   return (
     <S.Container>
       <S.ReturnButton 
         size={25}
-        onClick={returnToProduct} 
+        onClick={() => {
+          if (!givenProduct) {
+            returnToProducts();
+            return;
+          }
+
+          returnToProduct();
+        }} 
         color='#0d0d0d' 
       />
 
@@ -79,12 +119,12 @@ const Workspace = () => {
 
           <S.WrapperSelectAndSwitch>
             <SelectCategory product={product} />
-            <Switch value={product.hide} onClick={() => { product.toggleHide() }} />
+            {isEdit() && <Switch value={product.hide} onClick={toggleHide} />}
           </S.WrapperSelectAndSwitch>
 
           <S.ButtonWrapper>
             <Button 
-              label='Criar produto'
+              label={!isEdit() ? 'Criar produto' : 'Editar produto'}
               variant='secondary'
               onClick={submit}
             />

@@ -57,6 +57,7 @@ const SelectCategory = ({ product }: Props) => {
           id="select-category"
           label="Categoria"
           sx={{ fontSize: '1.4rem' }}
+          value={product.category}
           onChange={(evt) => { product.withCategory(evt.target.value as Category) }}
         >
           {Categories.map(category => (
