@@ -5,9 +5,13 @@ import { motion } from "motion/react";
 export const Container = styled(motion.button)<{
   variant: TButtonVariant
 }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem 2.4rem;
   cursor: pointer;
   color: #0D0D0D;
+  min-width: 15rem;
 
   ${props => {
     switch (props.variant) {

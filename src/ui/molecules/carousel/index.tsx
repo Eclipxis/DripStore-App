@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import { ChangeEvent } from 'react';
 import { BiBookAdd, BiTrash } from 'react-icons/bi';
+import useIsMobile from '@/ui/hooks/use-is-mobile';
 
 interface Props {
   images: string[]
@@ -16,6 +17,8 @@ interface Props {
 }
 
 const Carousel = ({ images, created, onAddImages, onRemoveImage }: Props) => {
+  const mobile = useIsMobile();
+
   const fileToBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -68,8 +71,8 @@ const Carousel = ({ images, created, onAddImages, onRemoveImage }: Props) => {
       style={{ 
         width: '100%', 
         height: '100%', 
-        minHeight: '45rem', 
-        maxWidth: '50rem',
+        minHeight: '45rem',
+        ...( !mobile ? { maxWidth: '55rem' } : {} )
       }}
       breakpoints={{
         640: { slidesPerView: 1 },
@@ -77,7 +80,7 @@ const Carousel = ({ images, created, onAddImages, onRemoveImage }: Props) => {
         1024: { slidesPerView: 1 }
       }}  
     >
-      {images.map((image, index) => (
+      {(images ?? []).map((image, index) => (
         <SwiperSlide 
           key={`${image}-${index}`}
           style={{ display: 'flex', alignItems: 'center' }}

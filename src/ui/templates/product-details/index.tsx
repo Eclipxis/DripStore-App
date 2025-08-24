@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Carousel from '@/ui/molecules/carousel';
 import Formatter from '@/utils/formatter';
 import * as S from './styled'
@@ -8,6 +9,7 @@ import { Category } from '@/entities/category';
 import { BiEdit, BiSolidTrash } from 'react-icons/bi';
 import SessionUtils from '@/utils/session';
 import { useDeleteProduct } from '@/ui/queries/product';
+import { useEffect } from 'react';
 
 interface Props {
   product: Product
@@ -25,13 +27,23 @@ const Categories: Record<Category, string> = {
 
 const ProductDetails = ({ product }: Props) => {
   const router = useRouter();
-  const { deleteProduct } = useDeleteProduct();
+  const { deleteProduct, isSuccess } = useDeleteProduct();
   
+  const goToProducts = () => router.push('/products');
+  const goToEdit = () => router.push(`/product/workspace?productid=${product.id}`);
+
+  useEffect(() => {
+    if (!isSuccess)
+      return;
+
+    goToProducts();
+  }, [isSuccess])
+
   return (
     <S.Container>
       <S.ReturnButton 
         size={25}
-        onClick={() => { router.push('/products') }} 
+        onClick={goToProducts} 
         color='#0d0d0d' 
       />
       
@@ -55,7 +67,7 @@ const ProductDetails = ({ product }: Props) => {
               <BiEdit 
                 size={20} 
                 color='#ffffff' 
-                onClick={() => { router.push(`/product/workspace?productid=${product.id}`) }} 
+                onClick={goToEdit} 
               />
             </S.UpdateButton>
           )}

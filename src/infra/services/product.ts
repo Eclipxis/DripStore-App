@@ -3,7 +3,7 @@ import BaseService from "./base";
 import { IProductService } from "./contracts/product";
 import Pagination from "@/entities/pagination";
 import Product from "@/entities/product";
-import { CreateProductDTO, ParamsGetProductDTO, PictureDTO, ProductDTO, UpdateProductDTO } from "./dtos/product.dto";
+import { CreateProductDTO, ParamsGetProductDTO, ProductDTO, UpdateProductDTO } from "./dtos/product.dto";
 import { IHttpClient } from "../http/contracts/http-client";
 
 @injectable()
@@ -54,14 +54,14 @@ class ProductService extends BaseService implements IProductService {
     });
   }
 
-  async update (product: Product, picturePayloads: PictureDTO[]): Promise<void> {
+  async update (product: Product): Promise<void> {
     if (!this.isLogged())
       throw new Error('É necessário estar logado para realizar a ação');
 
     await this.httpClient.put({
       url: `${this.BASE_URL}/product/${product.id}`,
       headers: this.headers,
-      data: UpdateProductDTO.toDTO(product, picturePayloads)
+      data: UpdateProductDTO.toDTO(product)
     });
   }
 

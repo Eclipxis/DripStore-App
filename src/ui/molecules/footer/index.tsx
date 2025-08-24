@@ -6,7 +6,7 @@ const Footer = () => {
       <S.LogoTitle>DRIP</S.LogoTitle>
       <S.LogoSubtitle>
         Elevando o street wear da <br/>
-        zona leste de São Paulo com estilo.
+        Zona Leste de São Paulo.
       </S.LogoSubtitle>
 
       <S.WrapperCopyright>

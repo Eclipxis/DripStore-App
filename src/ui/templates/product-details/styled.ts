@@ -23,7 +23,11 @@ export const Content = styled.div`
   flex-direction: column;
   height: 100%;
 
-  @media (min-width: 768px) {
+  @media (min-width: 550px) {
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -37,11 +41,14 @@ export const WrapperCarousel = styled.div`
   height: 60%;
   background-color: red;
 
-  @media (min-width: 768px) {
+  @media (min-width: 550px) {
+    max-width: max-content;
+  }
+
+  @media (min-width: 1024px) {
     flex: 1;
     height: 70%;
-    max-width: max-content;
-    border-radius: 12px;
+    border-radius: 1.2rem;
     overflow: hidden;
   }
 `;
@@ -51,11 +58,11 @@ export const WrapperInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  padding: 30px 16px;
+  padding: 3rem 1.6rem;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     flex: 1;
-    max-width: 500px;
+    max-width: 50rem;
     justify-content: center;
   }
 `;

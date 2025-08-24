@@ -44,7 +44,7 @@ export const useCreateProduct = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate, isPending, isSuccess } = useMutation<void, AxiosError, CreateProductProps, typeof productService.create>({
+  const { mutate, isPending, isSuccess, error } = useMutation<void, AxiosError, CreateProductProps, typeof productService.create>({
     mutationFn: async ({ product }) => productService.create(product),
     onSuccess: (_, { product }) => {
       queryClient.invalidateQueries({ queryKey: ['productId', product.id] });
@@ -54,7 +54,8 @@ export const useCreateProduct = () => {
   return {
     createProduct: mutate,
     isLoading: isPending,
-    isSuccess
+    isSuccess,
+    error
   }
 }
 
@@ -67,7 +68,7 @@ export const useUpdateProduct = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate, isPending, isSuccess } = useMutation<void, AxiosError, UpdateProductProps, typeof productService.update>({
+  const { mutate, isPending, isSuccess, error } = useMutation<void, AxiosError, UpdateProductProps, typeof productService.update>({
     mutationFn: async ({ product }) => productService.update(product),
     onSuccess: (_, { product }) => {
       queryClient.invalidateQueries({ queryKey: ['productId', product.id] });
@@ -77,7 +78,8 @@ export const useUpdateProduct = () => {
   return {
     updateProduct: mutate,
     isLoading: isPending,
-    isSuccess
+    isSuccess,
+    error
   }
 }
 
@@ -113,7 +115,7 @@ export const useHideProduct = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate, isPending, isSuccess } = useMutation<void, AxiosError, HideProductProps, typeof productService.hide>({
+  const { mutate, isPending, isSuccess, error } = useMutation<void, AxiosError, HideProductProps, typeof productService.hide>({
     mutationFn: async ({ productId }) => productService.hide(productId),
     onSuccess: (_, { productId }) => {
       queryClient.invalidateQueries({ queryKey: ['productId', productId] });
@@ -123,7 +125,8 @@ export const useHideProduct = () => {
   return {
     hideProduct: mutate,
     isLoading: isPending,
-    isSuccess
+    isSuccess,
+    error
   }
 }
 
@@ -136,7 +139,7 @@ export const useShowProduct = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate, isPending, isSuccess } = useMutation<void, AxiosError, ShowProductProps, typeof productService.show>({
+  const { mutate, isPending, isSuccess, error } = useMutation<void, AxiosError, ShowProductProps, typeof productService.show>({
     mutationFn: async ({ productId }) => productService.show(productId),
     onSuccess: (_, { productId }) => {
       queryClient.invalidateQueries({ queryKey: ['productId', productId] });
@@ -146,6 +149,7 @@ export const useShowProduct = () => {
   return {
     showProduct: mutate,
     isLoading: isPending,
-    isSuccess
+    isSuccess,
+    error
   }
 }

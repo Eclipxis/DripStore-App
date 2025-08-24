@@ -5,7 +5,6 @@ export const Container = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
-  flex: 1 1 28rem;
   min-width: 30rem;
 
   background-color: #212124;

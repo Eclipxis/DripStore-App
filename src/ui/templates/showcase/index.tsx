@@ -13,6 +13,8 @@ import { useGetProducts } from '@/ui/queries/product';
 import { useRequestByScroll } from '@/ui/hooks/use-request-by-scroll';
 import { useStore } from '@/ui/context/store';
 import FeedBackProductsNotFound from '@/ui/molecules/feedbacks/products-not-found';
+import { CircularProgress } from '@mui/material';
+import Product from '@/entities/product';
 
 const Showcase = () => {
   const router = useRouter();
@@ -22,7 +24,7 @@ const Showcase = () => {
   const [session, setSession] = useState<Session | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null)
 
-  const { lastElementRef, perPage } = useRequestByScroll(5);
+  const { lastElementRef, perPage, updateDuplicates } = useRequestByScroll(5);
 
   const { products, isLoading } = useGetProducts({ 
     page: 1, 
@@ -31,10 +33,12 @@ const Showcase = () => {
     categories: selectedCategories
   });
 
-  const singInIsOpen = useMemo(() => !!modals.find(modal => modal === 'sign-in'), [modals])
+  const [productsData, setProductsData] = useState<Product[]>(products?.data ?? []);
 
-  useEffect(() => {
-    if (singInIsOpen)
+  useMemo(() => {
+    const signInIsOpen = modals.some(modal => modal === 'sign-in')
+
+    if (signInIsOpen)
       return;
 
     const sessionExists = SessionUtils.getSession();
@@ -43,7 +47,22 @@ const Showcase = () => {
       return;
 
     setSession(sessionExists);
-  }, [singInIsOpen]);
+  },
+  [modals])
+
+  useEffect(() => {
+    if (!products)
+      return;
+
+    setProductsData(oldProducts => updateDuplicates([...oldProducts, ...products.data], 'id'))
+  }, [products, updateDuplicates])
+
+  useEffect(() => {
+    if (!products)
+      return;
+
+    setProductsData(products.data)
+  }, [products, selectedCategories])
 
   return (
     <S.Container>
@@ -51,11 +70,17 @@ const Showcase = () => {
       <Search wrapperRef={wrapperRef} />
 
       <S.WrapperProducts ref={wrapperRef}>
-        {!!session && <CreateProductButton />}
+        {!productsData.length && isLoading && (
+          <S.LoadingContainer>
+            <CircularProgress size={60} color='secondary' />
+          </S.LoadingContainer>
+        )}
 
-        {!products?.data.length && !isLoading && <FeedBackProductsNotFound darkmode />}
+        {!!session && !isLoading && <CreateProductButton />}
 
-        {(products?.data ?? []).map((product, index) => (
+        {!productsData.length && !isLoading && <FeedBackProductsNotFound darkmode />}
+
+        {(productsData ?? []).map((product, index) => (
           <CardShowCollection
             ref={(node) => { lastElementRef(node, index) }}
             key={product.id}

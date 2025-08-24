@@ -86,8 +86,8 @@ const Contact = () => {
           </S.CardTitle>
           
           <S.CardSubtitle style={{ fontSize: '1.6rem', textAlign: 'center' }}>
-            Segunda a Sexta: 9h às 18h<br/>
-            Sábado: 9h às 14h
+            Segunda a Sábado:<br/> 
+            9h às 18h
           </S.CardSubtitle>
         </S.Card>
       </S.Wrapper>

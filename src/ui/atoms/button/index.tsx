@@ -2,6 +2,7 @@
 import { TargetAndTransition, Transition, VariantLabels } from 'motion';
 import { CSSProperties } from 'react';
 import * as S from './styled';
+import { CircularProgress } from '@mui/material';
 
 export type TButtonVariant = 'primary' | 'secondary' | 'ghost'
 
@@ -9,10 +10,11 @@ interface Props {
   label: string;
   variant: TButtonVariant;
   onClick: () => void;
-  styles?: CSSProperties
-  initial?: boolean | TargetAndTransition | VariantLabels
-  animate?: boolean | TargetAndTransition | VariantLabels
-  transition?: Transition<any> | undefined
+  styles?: CSSProperties;
+  initial?: boolean | TargetAndTransition | VariantLabels;
+  animate?: boolean | TargetAndTransition | VariantLabels;
+  transition?: Transition<any> | undefined;
+  isLoading?: boolean;
 }
 
 const Button = ({ 
@@ -22,7 +24,8 @@ const Button = ({
   styles,
   initial,
   animate,
-  transition
+  transition,
+  isLoading = false
 }: Props) => {
   return (
     <S.Container
@@ -33,8 +36,10 @@ const Button = ({
       initial={initial}
       animate={animate}
       transition={transition}
+      disabled={isLoading}
     >
-      {label}
+
+      {isLoading ? <CircularProgress size={25} color='secondary' /> : label}
     </S.Container>
   );
 }

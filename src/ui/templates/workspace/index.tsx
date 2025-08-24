@@ -10,6 +10,7 @@ import Product from '@/entities/product';
 import { useEffect } from 'react';
 import Formatter from '@/utils/formatter';
 import Carousel from '@/ui/molecules/carousel';
+import SnackBar from '@/ui/molecules/snackbar';
 
 interface Props {
   product?: Product
@@ -17,10 +18,10 @@ interface Props {
 
 const Workspace = ({ product: givenProduct }: Props) => {
   const router = useRouter();
-  const { createProduct, isSuccess: createIsSuccess } = useCreateProduct();
-  const { updateProduct, isSuccess: updateIsSuccess } = useUpdateProduct();
-  const { hideProduct } = useHideProduct();
-  const { showProduct } = useShowProduct();
+  const { createProduct, isLoading: createIsLoading, isSuccess: createIsSuccess, error: createError } = useCreateProduct();
+  const { updateProduct, isLoading: updateIsLoading, isSuccess: updateIsSuccess, error: updateError } = useUpdateProduct();
+  const { hideProduct, isLoading: hideIsLoading, isSuccess: hideIsSuccess, error: hideError } = useHideProduct();
+  const { showProduct, isLoading: showIsLoading, isSuccess: showIsSuccess, error: showError } = useShowProduct();
 
   const product = useMutableEntity(givenProduct ?? new Product());
 
@@ -67,71 +68,123 @@ const Workspace = ({ product: givenProduct }: Props) => {
   }, [updateIsSuccess])
 
   return (
-    <S.Container>
-      <S.ReturnButton 
-        size={25}
-        onClick={() => {
-          if (!givenProduct) {
-            returnToProducts();
-            return;
-          }
+    <>
+      {!!createError && (
+        <SnackBar
+          feedback='ERROR'
+          message={`Ocorreu um erro ao criar: ${createError?.message}`}
+        />
+      )}
 
-          returnToProduct();
-        }} 
-        color='#0d0d0d' 
-      />
+      {!!updateError && (
+        <SnackBar
+          feedback='ERROR'
+          message={`Ocorreu um erro ao atualizar: ${updateError?.message}`}
+        />
+      )}
 
-      <S.Content>
-        <S.WrapperCarousel>
-          <Carousel
-            created
-            images={product.pictures}
-            onAddImages={(base64s) => {
-              product.withPictures(base64s);
-            }}
-            onRemoveImage={(pictureIndex) => {
-              product.removePicture(pictureIndex);
-            }}
-          />
-        </S.WrapperCarousel>
+      {!!hideError && (
+        <SnackBar
+          feedback='ERROR'
+          message={`Ocorreu um erro ao atualizar: ${hideError?.message}`}
+        />
+      )}
 
-        <S.WrapperInputs>
-          <S.Input 
-            autoFocus
-            placeholder='Nome do produto'
-            value={product.name}
-            onChange={(evt) => { product.withName(evt.target.value) }}
-          />
+      {!!showError && (
+        <SnackBar
+          feedback='ERROR'
+          message={`Ocorreu um erro ao atualizar: ${showError?.message}`}
+        />
+      )}
 
-          <S.TextArea 
-            placeholder='Descrição do produto...' 
-            value={product.description}
-            onChange={(evt) => { product.withDescription(evt.target.value) }}
-          />
-        
-          <S.Input
-            placeholder='R$ 0,00'
-            value={Formatter.FormatCurrency(product.price)}
-            onChange={(evt) => { 
-              product.withPrice(Formatter.ParseCurrency(evt.target.value)) 
-            }}
-          />
+      {(!!hideIsLoading || !!showIsLoading) && (
+        <SnackBar
+          feedback='LOADING'
+          message='Atualizando...'
+        />
+      )}
 
-          <S.WrapperSelectAndSwitch>
-            <SelectCategory product={product} />
-            {isEdit() && <Switch value={product.hide} onClick={toggleHide} />}
-          </S.WrapperSelectAndSwitch>
+      {!!hideIsSuccess && (
+        <SnackBar
+          feedback='SUCCESS'
+          message='Estoque atualizado com sucesso!'
+        />
+      )}
 
-          <S.ButtonWrapper>
-            <Button 
-              label={!isEdit() ? 'Criar produto' : 'Editar produto'}
-              variant='secondary'
-              onClick={submit}
+      {!!showIsSuccess && (
+        <SnackBar
+          feedback='SUCCESS'
+          message='Estoque atualizado com sucesso!'
+        />
+      )}
+
+      <S.Container>
+        <S.ReturnButton 
+          size={25}
+          onClick={() => {
+            if (!givenProduct) {
+              returnToProducts();
+              return;
+            }
+
+            returnToProduct();
+          }} 
+          color='#0d0d0d' 
+        />
+
+        <S.Content>
+          <S.WrapperCarousel>
+            <Carousel
+              created
+              images={product.pictures}
+              onAddImages={(base64s) => {
+                product.withPictures(base64s);
+              }}
+              onRemoveImage={(pictureIndex) => {
+                product.removePicture(pictureIndex);
+              }}
             />
-          </S.ButtonWrapper>
-        </S.WrapperInputs>
-      </S.Content>
-    </S.Container>
+          </S.WrapperCarousel>
+
+          <S.WrapperInputs>
+            <S.Input 
+              autoFocus
+              placeholder='Nome do produto'
+              value={product.name}
+              onChange={(evt) => { product.withName(evt.target.value) }}
+            />
+
+            <S.TextArea 
+              placeholder='Descrição do produto...' 
+              value={product.description}
+              onChange={(evt) => { product.withDescription(evt.target.value) }}
+            />
+          
+            <S.Input
+              placeholder='R$ 0,00'
+              value={Formatter.FormatCurrency(product.price)}
+              onChange={(evt) => { 
+                product.withPrice(Formatter.ParseCurrency(evt.target.value)) 
+              }}
+            />
+
+            <S.WrapperSelectAndSwitch>
+              <SelectCategory product={product} />
+              {isEdit() && <Switch value={product.hide} onClick={toggleHide} />}
+            </S.WrapperSelectAndSwitch>
+
+            <S.ButtonWrapper>
+              <Button 
+                label={!isEdit() ? 'Criar produto' : 'Editar produto'}
+                isLoading={createIsLoading || updateIsLoading}
+                variant='secondary'
+                onClick={submit}
+              />
+            </S.ButtonWrapper>
+          </S.WrapperInputs>
+        </S.Content>
+      </S.Container>
+    </>
   )
 }
 

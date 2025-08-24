@@ -18,3 +18,11 @@ export const WrapperProducts = styled.div`
   padding: 10rem 1.6rem 8rem 1.6rem;
   background-color: #f4f4f4;
 `;
+
+export const LoadingContainer = styled.div`
+  width: 100%;
+  height: 50dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

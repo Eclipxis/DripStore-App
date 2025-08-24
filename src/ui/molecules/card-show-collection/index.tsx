@@ -33,9 +33,7 @@ const CardShowCollection = ({
       )}
 
       <S.WrapperImage>
-        <Carousel 
-          images={pictures}
-        />
+        <Carousel images={pictures}/>
       </S.WrapperImage>
       <S.WrapperDetails>
         <S.NameDetails>{name}</S.NameDetails>

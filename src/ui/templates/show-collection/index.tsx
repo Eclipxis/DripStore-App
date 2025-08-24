@@ -4,11 +4,12 @@ import Button from '@/ui/atoms/button';
 import { useRouter } from 'next/navigation';
 import { useGetProducts } from '@/ui/queries/product';
 import FeedBackProductsNotFound from '@/ui/molecules/feedbacks/products-not-found';
+import { CircularProgress } from '@mui/material';
 
 const ShowCollection = () => {
   const router = useRouter();
 
-  const { products } = useGetProducts({ page: 1, perPage: 4 })
+  const { products, isLoading } = useGetProducts({ page: 1, perPage: 4 })
 
   const goToProducts = (id?: string) => {
     if (!id) {
@@ -31,7 +32,9 @@ const ShowCollection = () => {
         </S.WrapperTexts>
 
         <S.WrapperProducts>
-          {!products?.data.length && <FeedBackProductsNotFound />}
+          {!products?.data.length && isLoading && <CircularProgress size={40} color='secondary' />}
+
+          {!products?.data.length && !isLoading && <FeedBackProductsNotFound />}
 
           {(products?.data ?? []).map((product) => (
             <CardShowCollection
