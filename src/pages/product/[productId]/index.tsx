@@ -31,15 +31,15 @@ export default function ProductDetailsPage ({ stringfiedProduct }: ProductDetail
 }
 
 export async function getServerSideProps (ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<ProductDetailsProps>> {
-  const { params } = ctx
+  const { query } = ctx
 
-  if (!params?.productid)
+  if (!query?.productid)
     return { notFound: true };
 
   const productService = iocContainer.get<IProductService>('ProductService');
 
   try {
-    const product = await productService.getProduct(params.productid as string);
+    const product = await productService.getProduct(query.productid as string);
     const stringfiedProduct = JSON.stringify(ProductDTO.toDTO(product));
     return {
       props: { stringfiedProduct }

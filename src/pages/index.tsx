@@ -18,8 +18,8 @@ const HomePage = () => {
         <meta property="og:title" content="Drip Street Wear Store" />
         <meta 
           property="og:description" 
-          content="Eleve seu estilo com as melhores peças de street wear.\n
-          Autenticidade, qualidade e atitude em cada look." 
+          content="Eleve seu estilo com as melhores peças de street wear.
+          Autenticidade, qualidade e atitude em cada look."
         />
         <meta name="description" content="Loja de street wear na Zona Leste de São Paulo. Peças urbanas, exclusivas e com atitude. Conheça a DRIP Store!"></meta>
         <meta name="keywords" content="street wear, moda, urbano, zona leste, itaquera" />
