@@ -18,10 +18,10 @@ export default function ProductDetailsPage ({ stringfiedProduct }: ProductDetail
   return (
     <>
       <Head>
-        <title>{productDTO?.name ?? 'Produto'} | DRIP Store</title>
-        <meta property="og:image" content={productDTO?.pictures[0] ?? 'https://drip-store.s3.us-east-1.amazonaws.com/hero-bg.jpg'} />
-        <meta property="og:title" content={`${productDTO?.name} | DRIP Store`} />
-        <meta property="og:description" content={productDTO?.description ?? 'Produto Drip Store'} />
+        <title>{productDTO.name ?? 'Produto'} | DRIP Store</title>
+        <meta property="og:image" content={productDTO.pictures[0] ?? 'https://drip-store.s3.us-east-1.amazonaws.com/hero-bg.jpg'} />
+        <meta property="og:title" content={`${productDTO.name} | DRIP Store`} />
+        <meta property="og:description" content={productDTO.description ?? 'Produto Drip Store'} />
         <meta name="keywords" content="street wear, moda, urbano, zona leste, itaquera" />
         <meta name="author" content="DRIP Store" />
       </Head>
@@ -31,15 +31,12 @@ export default function ProductDetailsPage ({ stringfiedProduct }: ProductDetail
 }
 
 export async function getServerSideProps (ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<ProductDetailsProps>> {
-  const { query } = ctx
-
-  if (!query?.productid)
-    return { notFound: true };
+  const { params } = ctx
 
   const productService = iocContainer.get<IProductService>('ProductService');
 
   try {
-    const product = await productService.getProduct(query.productid as string);
+    const product = await productService.getProduct(params?.productid as string);
     const stringfiedProduct = JSON.stringify(ProductDTO.toDTO(product));
     return {
       props: { stringfiedProduct }
