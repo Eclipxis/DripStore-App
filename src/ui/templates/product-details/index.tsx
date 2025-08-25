@@ -41,11 +41,13 @@ const ProductDetails = ({ product }: Props) => {
 
   return (
     <S.Container>
-      <S.ReturnButton 
-        size={25}
-        onClick={goToProducts} 
-        color='#0d0d0d' 
-      />
+      <S.WrapperReturnButton>
+        <S.ReturnButton 
+          size={25}
+          onClick={goToProducts} 
+          color='#0d0d0d' 
+        />
+      </S.WrapperReturnButton>
       
       <S.Content>
         <S.WrapperCarousel>
