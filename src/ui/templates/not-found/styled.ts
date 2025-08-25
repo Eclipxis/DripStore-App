@@ -1,3 +1,4 @@
+import { poppins } from "@/styles/globalStyled";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -16,7 +17,7 @@ export const Wrapper = styled(Container)`
 
 export const Title = styled.h1`
   font-size: 5rem;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
   font-weight: 700;
   text-align: center;
 

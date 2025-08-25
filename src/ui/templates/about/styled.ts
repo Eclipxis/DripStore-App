@@ -1,3 +1,4 @@
+import { poppins } from "@/styles/globalStyled";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -20,7 +21,7 @@ export const Wrapper = styled.div`
 export const Title = styled.h2`
   font-size: 3.6rem;
   font-weight: 900;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
 
   background: linear-gradient(90deg, #ff9aef, #cd94f8);
   -webkit-background-clip: text;

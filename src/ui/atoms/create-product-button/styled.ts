@@ -1,3 +1,4 @@
+import { poppins } from "@/styles/globalStyled";
 import { motion } from "motion/react";
 import styled from "styled-components";
 
@@ -23,7 +24,7 @@ export const Container = styled(motion.div)`
 export const Text = styled.p`
   font-size: 3rem;
   font-weight: 700;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
   color: #239cddff;
   text-align: center;
 `;

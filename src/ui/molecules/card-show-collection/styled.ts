@@ -1,3 +1,4 @@
+import { poppins } from "@/styles/globalStyled";
 import { motion } from "motion/react";
 import styled from "styled-components";
 
@@ -93,5 +94,5 @@ export const SoldOutLabel = styled.div`
   font-size: 4rem;
   font-weight: 600;
   padding: 0.5rem 1rem;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
 `;

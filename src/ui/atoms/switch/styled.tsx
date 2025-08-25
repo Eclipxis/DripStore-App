@@ -1,3 +1,4 @@
+import { poppins } from "@/styles/globalStyled";
 import { Switch, SwitchProps } from "@mui/material";
 import { styled as MUIStyled } from '@mui/material/styles';
 import { styled } from "styled-components";
@@ -12,7 +13,7 @@ export const Container = styled.div`
 
 export const Text = styled.p`
   font-size: 1.4rem;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
   text-align: center;
 `;
 

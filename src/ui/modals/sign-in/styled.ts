@@ -1,3 +1,4 @@
+import { poppins } from "@/styles/globalStyled";
 import { FaArrowLeft } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -54,7 +55,7 @@ export const ReturnButton = styled(FaArrowLeft)`
 export const Title = styled.h1`
   font-size: 3rem;
   font-weight: 600;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
   padding-bottom: 5rem;
 `;
 
@@ -84,7 +85,7 @@ export const Input = styled.input`
   border-radius: 1rem;
   padding: 1.6rem;
   font-size: 1.8rem;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
   background: #d4d4d4;
   width: 100%;
 `;
@@ -93,7 +94,7 @@ export const LoginButton = styled.button`
   margin-top: 2rem;
   padding: 1.4rem;
   font-size: 1.8rem;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
   border: none;
   border-radius: 1rem;
   background-color: #0095ff;

@@ -1,3 +1,4 @@
+import { poppins } from "@/styles/globalStyled";
 import { motion } from "motion/react";
 import styled from "styled-components";
 
@@ -33,7 +34,7 @@ export const SearchInput = styled(motion.input)`
   border-radius: 1rem;
   padding: 1.6rem;
   font-size: 1.8rem;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
   background: #d4d4d4;
   box-shadow:  2rem 2rem 6rem #b4b4b4,
               -2rem -2rem 6rem #f4f4f4;

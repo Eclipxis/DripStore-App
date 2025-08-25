@@ -1,3 +1,4 @@
+import { poppins } from "@/styles/globalStyled";
 import { FaArrowLeft } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -123,7 +124,7 @@ export const WrapperCategoryAndPrice = styled.div`
 `;
 
 export const ProductName = styled.h1`
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
   font-size: 3rem;
   font-weight: 600;
   color: #0d0d0d;
@@ -149,5 +150,5 @@ export const ProductCategoryStrong = styled(ProductCategory)`
 export const ProductPrice = styled.p`
   font-size: 4rem;
   font-weight: 700;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
 `;

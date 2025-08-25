@@ -1,3 +1,4 @@
+import { poppins } from "@/styles/globalStyled";
 import { FaArrowLeft } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -70,7 +71,7 @@ export const WrapperCarousel = styled.div`
 export const TitleImages = styled.p`
   font-size: 3rem;
   font-weight: 700;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
   color: #239cddff;
   text-align: center;
 `;

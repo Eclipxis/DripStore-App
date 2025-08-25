@@ -1,3 +1,4 @@
+import { poppins } from "@/styles/globalStyled";
 import styled from "styled-components";
 
 export const Image = styled.img`
@@ -44,7 +45,7 @@ export const WrapperCarousel = styled.label`
 export const TitleImages = styled.p`
   font-size: 3rem;
   font-weight: 700;
-  font-family: 'Poppins';
+  font-family: ${poppins.style.fontFamily};
   color: #239cddff;
   text-align: center;
 `;
