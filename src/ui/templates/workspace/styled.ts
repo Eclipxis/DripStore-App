@@ -18,11 +18,20 @@ export const Container = styled.div`
   }
 `;
 
-export const ReturnButton = styled(FaArrowLeft)`
+export const WrapperReturnButton = styled.div`
   position: fixed;
   top: 1.5rem;
   left: 1.5rem;
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+  border-radius: 4rem;
+  padding: 1rem;
+`;
+
+export const ReturnButton = styled(FaArrowLeft)`
   cursor: pointer;
 `;
 

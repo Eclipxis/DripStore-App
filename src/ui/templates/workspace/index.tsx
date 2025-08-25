@@ -119,18 +119,20 @@ const Workspace = ({ product: givenProduct }: Props) => {
       )}
 
       <S.Container>
-        <S.ReturnButton 
-          size={25}
-          onClick={() => {
-            if (!givenProduct) {
-              returnToProducts();
-              return;
-            }
+        <S.WrapperReturnButton>
+          <S.ReturnButton 
+            size={25}
+            color='#0d0d0d' 
+            onClick={() => {
+              if (!givenProduct) {
+                returnToProducts();
+                return;
+              }
 
-            returnToProduct();
-          }} 
-          color='#0d0d0d' 
-        />
+              returnToProduct();
+            }} 
+          />
+        </S.WrapperReturnButton>
 
         <S.Content>
           <S.WrapperCarousel>
@@ -155,13 +157,13 @@ const Workspace = ({ product: givenProduct }: Props) => {
             />
 
             <S.TextArea 
-              placeholder='Descrição do produto...' 
+              placeholder='Descrição do produto... (opcional)' 
               value={product.description}
               onChange={(evt) => { product.withDescription(evt.target.value) }}
             />
           
             <S.Input
-              placeholder='R$ 0,00'
+              placeholder='R$ 0,00 (opcional)'
               value={Formatter.FormatCurrency(product.price)}
               onChange={(evt) => { 
                 product.withPrice(Formatter.ParseCurrency(evt.target.value)) 
