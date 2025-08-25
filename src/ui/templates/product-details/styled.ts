@@ -5,7 +5,6 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: #f4f4f4;
   width: 100dvw;
   height: 100dvh;
 `;
@@ -21,7 +20,7 @@ export const ReturnButton = styled(FaArrowLeft)`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: max-content;
 
   @media (min-width: 550px) {
     align-items: center;
@@ -33,13 +32,13 @@ export const Content = styled.div`
     justify-content: center;
     gap: 4rem;
     padding: 0 4rem;
+    height: 100%;
   }
 `;
 
 export const WrapperCarousel = styled.div`
   width: 100%;
   height: 60%;
-  background-color: red;
 
   @media (min-width: 550px) {
     max-width: max-content;

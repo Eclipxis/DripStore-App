@@ -19,26 +19,7 @@ const SettingsModal = ({ setIsOpenSettings }: Props) => {
   useClickOutside(modalRef, closeModal, ['settings-button'])
 
   const getItems = () => {
-    if (!!SessionUtils.getSession()) {
-      return [
-        {
-          label: 'Página inicial',
-          onClick: () => {
-            closeModal();
-            router.replace('/');
-          }
-        }
-      ]
-    }
-
-    return [
-      {
-        label: 'Login',
-        onClick: () => {
-          closeModal();
-          open('sign-in');
-        }
-      },
+    const items = [
       {
         label: 'Página inicial',
         onClick: () => {
@@ -46,7 +27,28 @@ const SettingsModal = ({ setIsOpenSettings }: Props) => {
           router.replace('/');
         }
       }
-    ];
+    ]
+
+    if (!!SessionUtils.getSession()) {
+      items.push({
+        label: 'Sair',
+        onClick: () => {
+          closeModal();
+          SessionUtils.removeSession();
+          window.location.reload();
+        }
+      })
+    } else {
+      items.push({
+        label: 'Login',
+        onClick: () => {
+          closeModal();
+          open('sign-in');
+        }
+      })
+    }
+
+    return items;
   }
 
   return (

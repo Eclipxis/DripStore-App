@@ -6,7 +6,10 @@ const CreateProductButton = () => {
   const router = useRouter();
 
   return (
-    <S.Container onClick={() => { router.push('/product/workspace') }}>
+    <S.Container 
+      id='create-product-button'
+      onClick={() => { router.push('/product/workspace') }}
+    >
       <BiAddToQueue size={100} color='#239cddff' />
       <S.Text>Criar produto</S.Text>
     </S.Container>

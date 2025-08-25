@@ -5,6 +5,7 @@ import Pagination from "@/entities/pagination";
 import Product from "@/entities/product";
 import { CreateProductDTO, ParamsGetProductDTO, ProductDTO, UpdateProductDTO } from "./dtos/product.dto";
 import { IHttpClient } from "../http/contracts/http-client";
+import SessionUtils from "@/utils/session";
 
 @injectable()
 class ProductService extends BaseService implements IProductService {
@@ -44,7 +45,7 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async create (product: Product): Promise<void> {
-    if (!this.isLogged())
+    if (!SessionUtils.isLogged())
       throw new Error('É necessário estar logado para realizar a ação');
 
     await this.httpClient.post({
@@ -55,7 +56,7 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async update (product: Product): Promise<void> {
-    if (!this.isLogged())
+    if (!SessionUtils.isLogged())
       throw new Error('É necessário estar logado para realizar a ação');
 
     await this.httpClient.put({
@@ -66,7 +67,7 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async delete (productId: string): Promise<void> {
-    if (!this.isLogged())
+    if (!SessionUtils.isLogged())
       throw new Error('É necessário estar logado para realizar a ação');
 
     await this.httpClient.delete({
@@ -76,7 +77,7 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async hide (productId: string): Promise<void> {
-    if (!this.isLogged())
+    if (!SessionUtils.isLogged())
       throw new Error('É necessário estar logado para realizar a ação');
 
     await this.httpClient.put({
@@ -86,7 +87,7 @@ class ProductService extends BaseService implements IProductService {
   }
 
   async show (productId: string): Promise<void> {
-    if (!this.isLogged())
+    if (!SessionUtils.isLogged())
       throw new Error('É necessário estar logado para realizar a ação');
     
     await this.httpClient.put({

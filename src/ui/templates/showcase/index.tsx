@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
  
 import SettingsButton from '@/ui/atoms/settings-button';
 import * as S from './styled';
@@ -55,7 +56,7 @@ const Showcase = () => {
       return;
 
     setProductsData(oldProducts => updateDuplicates([...oldProducts, ...products.data], 'id'))
-  }, [products, updateDuplicates])
+  }, [products])
 
   useEffect(() => {
     if (!products)

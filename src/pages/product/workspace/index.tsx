@@ -2,6 +2,7 @@
 import { iocContainer } from "@/infra/ioc";
 import { IProductService } from "@/infra/services/contracts/product";
 import { ProductDTO } from "@/infra/services/dtos/product.dto";
+import SessionUtils from "@/utils/session";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -12,7 +13,7 @@ interface WorkspaceProps {
   stringfiedProduct?: string;
 }
 
-const WorkspaceProductPage = ({ stringfiedProduct }: WorkspaceProps) => {
+const WorkspaceProductPage = ({ stringfiedProduct }: WorkspaceProps) => {  
   const product = stringfiedProduct ? ProductDTO.toProduct(JSON.parse(stringfiedProduct) as ProductDTO) : undefined
 
   return (
@@ -31,6 +32,9 @@ const WorkspaceProductPage = ({ stringfiedProduct }: WorkspaceProps) => {
 }
 
 export async function getServerSideProps (ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<WorkspaceProps>> {
+  if (!SessionUtils.getSession(ctx))
+    return { notFound: true };
+  
   const { query } = ctx
 
   if (!query?.productid)
@@ -45,7 +49,7 @@ export async function getServerSideProps (ctx: GetServerSidePropsContext): Promi
       props: { stringfiedProduct }
     }
   } catch (error) {
-    return { props: { } }
+    return { notFound: true }
   }
 }
 

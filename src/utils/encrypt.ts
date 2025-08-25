@@ -1,43 +1,14 @@
-const pemToCryptoKey = (): Promise<CryptoKey> => {
-  const pem = process.env.NEXT_PUBLIC_KEY_PEM;
-
-  if (!pem)
-    throw new Error('Variável PEM não encontrada');
-
-  const pemContents = pem
-    .replace("-----BEGIN PUBLIC KEY-----", "")
-    .replace("-----END PUBLIC KEY-----", "")
-    .replace(/\s+/g, "");
-
-  const binaryDerString = atob(pemContents);
-  const binaryDer = new Uint8Array(binaryDerString.length);
-  for (let i = 0; i < binaryDerString.length; i++) {
-    binaryDer[i] = binaryDerString.charCodeAt(i);
-  }
-
-  return window.crypto.subtle.importKey(
-    "spki",
-    binaryDer.buffer,
-    {
-      name: "RSA-OAEP",
-      hash: "SHA-256",
-    },
-    true,
-    ["encrypt"]
-  );
-}
+import forge from 'node-forge';
 
 export const encryptPassword = async (password: string): Promise<string> => {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
+  const pem = process.env.NEXT_PUBLIC_KEY_PEM;
+  if (!pem) throw new Error('Variável PEM não encontrada');
 
-  const cryptoKey = await pemToCryptoKey();
+  const publicKey = forge.pki.publicKeyFromPem(pem);
 
-  const encrypted = await window.crypto.subtle.encrypt(
-    { name: "RSA-OAEP" },
-    cryptoKey,
-    data
-  );
+  const encryptedBytes = publicKey.encrypt(password, 'RSA-OAEP', {
+    md: forge.md.sha256.create(),
+  });
 
-  return btoa(String.fromCharCode(...new Uint8Array(encrypted)));
-}
+  return forge.util.encode64(encryptedBytes);
+};

@@ -8,6 +8,7 @@ export interface IQueryContext {
   isSelectedCategory: (category: Category) => boolean;
   selectCategory: (category: Category) => void;
   removeCategory: (category: Category) => void;
+  removeAllCategories: () => void;
 }
 
 export const useQueryContext = (): IQueryContext => {
@@ -26,12 +27,17 @@ export const useQueryContext = (): IQueryContext => {
     setSelectedCategories(old => old.filter(info => info !== category));
   }
 
+  const removeAllCategories = () => {
+    setSelectedCategories([]);
+  }
+
   return {
     search,
     setSearch,
     selectedCategories,
     isSelectedCategory,
     selectCategory,
-    removeCategory
+    removeCategory,
+    removeAllCategories
   }
 }

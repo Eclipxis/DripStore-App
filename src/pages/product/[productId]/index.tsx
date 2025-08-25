@@ -13,7 +13,7 @@ interface ProductDetailsProps {
 }
 
 export default function ProductDetailsPage ({ stringfiedProduct }: ProductDetailsProps) {
-  const productDTO = stringfiedProduct ? JSON.parse(stringfiedProduct) as ProductDTO : undefined
+  const productDTO = JSON.parse(stringfiedProduct!) as ProductDTO;
 
   return (
     <>
@@ -25,7 +25,7 @@ export default function ProductDetailsPage ({ stringfiedProduct }: ProductDetail
         <meta name="keywords" content="street wear, moda, urbano, zona leste, itaquera" />
         <meta name="author" content="DRIP Store" />
       </Head>
-      {productDTO ? <ProductDetails product={ProductDTO.toProduct(productDTO)} /> : <></>}
+      <ProductDetails product={ProductDTO.toProduct(productDTO)} />
     </>
   )
 }
@@ -34,7 +34,7 @@ export async function getServerSideProps (ctx: GetServerSidePropsContext): Promi
   const { params } = ctx
 
   if (!params?.productid)
-    return { props: { } }
+    return { notFound: true };
 
   const productService = iocContainer.get<IProductService>('ProductService');
 
@@ -45,6 +45,6 @@ export async function getServerSideProps (ctx: GetServerSidePropsContext): Promi
       props: { stringfiedProduct }
     }
   } catch (error) {
-    return { props: { } }
+    return { notFound: true };
   }
 }

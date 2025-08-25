@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Search = ({ wrapperRef }: Props) => {
-  const { search, setSearch } = useStore(({ queryContext }) => queryContext);
+  const { search, selectedCategories, setSearch, removeAllCategories } = useStore(({ queryContext }) => queryContext);
   const [focused, setFocused] = useState<boolean>(false);
 
   const { open, modals } = useModals((state) => state);
@@ -42,7 +42,14 @@ const Search = ({ wrapperRef }: Props) => {
     setFocused(false)
   }
 
-  const getWidthByRef = () => `${(wrapperRef?.current?.getBoundingClientRect().width ?? 0) - 50}px`;
+  const clearFilters = () => {
+    setSearch('');
+    removeAllCategories();
+  }
+
+  const hasFilters = () => (!!search || !!selectedCategories.length);
+
+  const getWidthByRef = () => `${(wrapperRef?.current?.getBoundingClientRect().width ?? 0) - (hasFilters() ? 115 : 50)}px`;
 
   const getWidthInput = () => {
     if (isMobile && focused)
@@ -94,6 +101,15 @@ const Search = ({ wrapperRef }: Props) => {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.75 }}
           onClick={openModal}
+        />
+      )}
+
+      {hasFilters() && (
+        <S.SearchButton
+          icon='remove-filters.svg'
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.75 }}
+          onClick={clearFilters}
         />
       )}
     </S.Container>

@@ -8,6 +8,7 @@ import { Navigation } from 'swiper/modules';
 import { ChangeEvent } from 'react';
 import { BiBookAdd, BiTrash } from 'react-icons/bi';
 import useIsMobile from '@/ui/hooks/use-is-mobile';
+import { useRouter } from 'next/router';
 
 interface Props {
   images: string[]
@@ -17,6 +18,7 @@ interface Props {
 }
 
 const Carousel = ({ images, created, onAddImages, onRemoveImage }: Props) => {
+  const router = useRouter();
   const mobile = useIsMobile();
 
   const fileToBase64 = (file: File): Promise<string> => {
@@ -72,7 +74,7 @@ const Carousel = ({ images, created, onAddImages, onRemoveImage }: Props) => {
         width: '100%', 
         height: '100%', 
         minHeight: '45rem',
-        ...( !mobile ? { maxWidth: '55rem' } : {} )
+        ...((mobile && router.pathname === '/') ? { maxWidth: '40rem' } : { maxWidth: '55rem' })
       }}
       breakpoints={{
         640: { slidesPerView: 1 },

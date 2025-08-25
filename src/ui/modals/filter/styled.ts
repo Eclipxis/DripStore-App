@@ -4,7 +4,7 @@ import { css, styled } from "styled-components";
 export const Container = styled(motion.div)<{ top: string, left: string }>`
   width: 24rem;
   max-height: 28rem;
-  position: absolute;
+  position: fixed;
   top: ${props => props.top};
   left: ${props => props.left};
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useSignIn } from '@/ui/queries/auth';
 import { encryptPassword } from '@/utils/encrypt';
+import SessionUtils from '@/utils/session';
 
 const SignInModal = () => {
   const { closeAll } = useModals((state) => state);
@@ -34,8 +35,10 @@ const SignInModal = () => {
     if (!isSuccess)
       return;
 
-    sessionStorage.setItem('session', JSON.stringify(session))
+    if (!session)
+      throw new Error('Sessão não encontrada');
 
+    SessionUtils.saveSession(session);
     closeAll();
   }, [isSuccess, closeAll, session])
 

@@ -2,12 +2,13 @@ import { motion } from "motion/react";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: absolute;
+  position: fixed;
   top: 2rem;
   left: 2rem;
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  z-index: 30;
 `;
 
 export const WrapperInput = styled.div`
