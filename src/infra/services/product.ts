@@ -37,9 +37,9 @@ class ProductService extends BaseService implements IProductService {
     return pagination;
   }
 
-  async getProduct (productid: string): Promise<Product> {
+  async getProduct (productId: string): Promise<Product> {
     const dto = await this.httpClient.get({
-      url: `${this.BASE_URL}/product/${productid}`,
+      url: `${this.BASE_URL}/product/${productId}`,
     });
     return ProductDTO.toProduct(dto);
   }

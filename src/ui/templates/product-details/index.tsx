@@ -3,7 +3,7 @@ import Carousel from '@/ui/molecules/carousel';
 import Formatter from '@/utils/formatter';
 import * as S from './styled'
 import Button from '@/ui/atoms/button';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Product from '@/entities/product';
 import { Category } from '@/entities/category';
 import { BiEdit, BiSolidTrash } from 'react-icons/bi';

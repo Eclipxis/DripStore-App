@@ -1,7 +1,7 @@
 import * as S from './styled'
 import { useClickOutside } from '@/ui/hooks/use-click-outside';
 import { Dispatch, SetStateAction, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import SessionUtils from '@/utils/session';
 import { useModals } from '@/ui/context/modals/context';
 

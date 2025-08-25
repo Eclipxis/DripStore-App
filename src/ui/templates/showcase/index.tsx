@@ -5,7 +5,7 @@ import * as S from './styled';
 import Search from '@/ui/molecules/seach';
 import CardShowCollection from '@/ui/molecules/card-show-collection';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import CreateProductButton from '@/ui/atoms/create-product-button';
 import SessionUtils from '@/utils/session';
 import Session from '@/entities/session';

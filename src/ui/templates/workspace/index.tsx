@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import * as S from './styled'
 import Button from '@/ui/atoms/button';
 import SelectCategory from '@/ui/molecules/select-category';

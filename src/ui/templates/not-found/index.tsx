@@ -1,6 +1,6 @@
 import Button from '@/ui/atoms/button';
 import * as S from './styled'
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 const NotFoundPage = () => {
   const router = useRouter();

@@ -1,7 +1,7 @@
 import CardShowCollection from '@/ui/molecules/card-show-collection';
 import * as S from './styled';
 import Button from '@/ui/atoms/button';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { useGetProducts } from '@/ui/queries/product';
 import FeedBackProductsNotFound from '@/ui/molecules/feedbacks/products-not-found';
 import { CircularProgress } from '@mui/material';

@@ -1,6 +1,6 @@
 import { BiAddToQueue  } from 'react-icons/bi'
 import * as S from './styled'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 
 const CreateProductButton = () => {
   const router = useRouter();
