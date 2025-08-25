@@ -36,7 +36,7 @@ export async function getServerSideProps (ctx: GetServerSidePropsContext): Promi
   const productService = iocContainer.get<IProductService>('ProductService');
 
   try {
-    const product = await productService.getProduct(params?.productid as string);
+    const product = await productService.getProduct(params?.productId as string);
     const stringfiedProduct = JSON.stringify(ProductDTO.toDTO(product));
     return {
       props: { stringfiedProduct }
