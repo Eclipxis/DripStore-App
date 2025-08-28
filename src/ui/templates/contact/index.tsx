@@ -1,5 +1,6 @@
 import Button from '@/ui/atoms/button';
 import * as S from './styled';
+import Links from '@/constants/links.constants';
 
 const Contact = () => {
   const redirectToInstagram = () => {
@@ -38,7 +39,7 @@ const Contact = () => {
             <Button 
               label='Chamar no Whatsapp'
               variant='primary'
-              onClick={() => {}}
+              onClick={() => { open(Links.whatsapp) }}
             />
           </S.Card>
 

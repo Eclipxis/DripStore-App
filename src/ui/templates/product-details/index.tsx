@@ -10,6 +10,7 @@ import { BiEdit, BiSolidTrash } from 'react-icons/bi';
 import SessionUtils from '@/utils/session';
 import { useDeleteProduct } from '@/ui/queries/product';
 import { useEffect } from 'react';
+import Links from '@/constants/links.constants';
 
 interface Props {
   product: Product
@@ -88,13 +89,13 @@ const ProductDetails = ({ product }: Props) => {
             </div>
 
             <div className='price-and-contact'>
-              {product.price && (
+              {!!product.price && (
                 <S.ProductPrice>{Formatter.FormatCurrency(product.price)}</S.ProductPrice>
               )}
               <Button 
                 label='Entre em contato'
                 variant='primary'
-                onClick={() => {}}
+                onClick={() => { open(Links.whatsapp) }}
                 styles={{
                   fontSize: '1.8rem',
                   fontWeight: '600'
